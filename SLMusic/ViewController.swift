@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var label: UILabel!
 
+    @IBOutlet weak var textField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         label.text = "Välkommen! Tryck på knappen"
@@ -19,7 +21,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func button(_ sender: UIButton) {
-        label.text = "Hej då!"
+        label.text = textField.text
     }
     
 }
