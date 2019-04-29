@@ -12,6 +12,7 @@
 		1E195C302276F8E4000FEA40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C2E2276F8E4000FEA40 /* Main.storyboard */; };
 		1E195C322276F8E5000FEA40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C312276F8E5000FEA40 /* Assets.xcassets */; };
 		1E195C352276F8E5000FEA40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C332276F8E5000FEA40 /* LaunchScreen.storyboard */; };
+		1E195C402277266B000FEA40 /* TripOverViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C3F2277266B000FEA40 /* TripOverViewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		1E195C312276F8E5000FEA40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E195C342276F8E5000FEA40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E195C362276F8E5000FEA40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E195C3F2277266B000FEA40 /* TripOverViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripOverViewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		1E195C292276F8E4000FEA40 /* SLMusic */ = {
 			isa = PBXGroup;
 			children = (
+				1E195C3E227725F1000FEA40 /* Trip overView */,
 				1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */,
 				1E195C2C2276F8E4000FEA40 /* ViewController.swift */,
 				1E195C2E2276F8E4000FEA40 /* Main.storyboard */,
@@ -62,6 +65,14 @@
 				1E195C362276F8E5000FEA40 /* Info.plist */,
 			);
 			path = SLMusic;
+			sourceTree = "<group>";
+		};
+		1E195C3E227725F1000FEA40 /* Trip overView */ = {
+			isa = PBXGroup;
+			children = (
+				1E195C3F2277266B000FEA40 /* TripOverViewViewController.swift */,
+			);
+			path = "Trip overView";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E195C402277266B000FEA40 /* TripOverViewViewController.swift in Sources */,
 				1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */,
 				1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */,
 			);
