@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
     @IBOutlet weak var button: UIButton!
@@ -32,6 +33,7 @@ class ViewController: UIViewController {
             label.text = "Du bör skriva något"
         } else {
         label.text = textField.text
+            textField.text = ""
         }
     }
     @IBAction func goToSettings(_ sender: Any) {
