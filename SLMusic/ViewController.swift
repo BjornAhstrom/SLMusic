@@ -9,12 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var label: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        label.text = "Välkommen! Tryck på knappen"
+        
     }
 
-
+    @IBAction func button(_ sender: UIButton) {
+        label.text = "Hej då!"
+    }
+    
 }
 
