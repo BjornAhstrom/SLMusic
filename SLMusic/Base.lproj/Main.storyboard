@@ -75,7 +75,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="button" destination="qUn-h1-dgG" id="zcz-fq-KZA"/>
-                        <outlet property="imageView" destination="RvR-vW-Bbt" id="0xb-le-Slz"/>
                         <outlet property="label" destination="p3S-sj-zYS" id="vlo-wG-sHC"/>
                         <outlet property="textField" destination="tST-PN-BnN" id="osA-FZ-d10"/>
                         <segue destination="09c-04-q5P" kind="show" identifier="goToSettingsVC" id="ytS-2u-gKk"/>
