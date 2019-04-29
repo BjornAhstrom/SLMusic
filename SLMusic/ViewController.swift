@@ -34,6 +34,9 @@ class ViewController: UIViewController {
         label.text = textField.text
         }
     }
+    @IBAction func goToSettings(_ sender: Any) {
+        performSegue(withIdentifier: "goToSettingsVC", sender: self)
+    }
     
 }
 
