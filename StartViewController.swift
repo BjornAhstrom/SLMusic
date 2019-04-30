@@ -18,6 +18,19 @@ class StartViewController: UIViewController {
     
 
     override func viewDidLoad() {
+        let urlString = URL(string: "https://api.resrobot.se/v2/departureBoard.json?key=9ee1eedf-83c1-4b59-9b1c-826935605b24&id=740000001&date=2019-04-30&time=12:10&passlist=0")
+        if let url = urlString {
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if error != nil {
+                    print(error)
+                } else {
+                    if let usableData = data {
+                        print(usableData) //JSONSerialization
+                    }
+                }
+            }
+            task.resume()
+        }
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
