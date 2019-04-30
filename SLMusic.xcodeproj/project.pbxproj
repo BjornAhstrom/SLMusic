@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		151D7485B6AC2F2759DFE62E /* Pods_SLMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC989D957D20B2C399C3EAB /* Pods_SLMusic.framework */; };
 		1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */; };
 		1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2C2276F8E4000FEA40 /* ViewController.swift */; };
 		1E195C302276F8E4000FEA40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C2E2276F8E4000FEA40 /* Main.storyboard */; };
@@ -28,6 +29,9 @@
 		1E195C4E22785A01000FEA40 /* TripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewController.swift; sourceTree = "<group>"; };
 		1E195C5022785A23000FEA40 /* TripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCell.swift; sourceTree = "<group>"; };
 		413BCA3F22772B260095B2F7 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartViewController.swift; path = ../StartViewController.swift; sourceTree = "<group>"; };
+		ECAF465D2F2F442C93F86DBC /* Pods-SLMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLMusic.release.xcconfig"; path = "Target Support Files/Pods-SLMusic/Pods-SLMusic.release.xcconfig"; sourceTree = "<group>"; };
+		F7D637692D33AC81D82E00B3 /* Pods-SLMusic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLMusic.debug.xcconfig"; path = "Target Support Files/Pods-SLMusic/Pods-SLMusic.debug.xcconfig"; sourceTree = "<group>"; };
+		FAC989D957D20B2C399C3EAB /* Pods_SLMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +39,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				151D7485B6AC2F2759DFE62E /* Pods_SLMusic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1276DF24F2B5D9CDE94E1835 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FAC989D957D20B2C399C3EAB /* Pods_SLMusic.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1E195C1E2276F8E4000FEA40 = {
 			isa = PBXGroup;
 			children = (
 				1E195C292276F8E4000FEA40 /* SLMusic */,
 				1E195C282276F8E4000FEA40 /* Products */,
+				595854F3B369E9ED2BA70365 /* Pods */,
+				1276DF24F2B5D9CDE94E1835 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,7 +75,7 @@
 		1E195C292276F8E4000FEA40 /* SLMusic */ = {
 			isa = PBXGroup;
 			children = (
-				1E195C49227857F7000FEA40 /* Trip View Controller Björn */,
+				1E195C49227857F7000FEA40 /* Trip View Controller Björn */,
 				413BCA3F22772B260095B2F7 /* StartViewController.swift */,
 				1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */,
 				1E195C2C2276F8E4000FEA40 /* ViewController.swift */,
@@ -72,7 +87,7 @@
 			path = SLMusic;
 			sourceTree = "<group>";
 		};
-		1E195C49227857F7000FEA40 /* Trip View Controller Björn */ = {
+		1E195C49227857F7000FEA40 /* Trip View Controller Björn */ = {
 			isa = PBXGroup;
 			children = (
 				1E195C4E22785A01000FEA40 /* TripViewController.swift */,
@@ -82,6 +97,16 @@
 			path = "Trip View Controller Björn";
 			sourceTree = "<group>";
 		};
+		595854F3B369E9ED2BA70365 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F7D637692D33AC81D82E00B3 /* Pods-SLMusic.debug.xcconfig */,
+				ECAF465D2F2F442C93F86DBC /* Pods-SLMusic.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,9 +114,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E195C392276F8E5000FEA40 /* Build configuration list for PBXNativeTarget "SLMusic" */;
 			buildPhases = (
+				BFC9EED419A4D1552DB30285 /* [CP] Check Pods Manifest.lock */,
 				1E195C232276F8E4000FEA40 /* Sources */,
 				1E195C242276F8E4000FEA40 /* Frameworks */,
 				1E195C252276F8E4000FEA40 /* Resources */,
+				DF74DA495A82B8D57410A4D9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -147,6 +174,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BFC9EED419A4D1552DB30285 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SLMusic-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF74DA495A82B8D57410A4D9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SLMusic/Pods-SLMusic-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SLMusic/Pods-SLMusic-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1E195C232276F8E4000FEA40 /* Sources */ = {
@@ -301,6 +375,7 @@
 		};
 		1E195C3A2276F8E5000FEA40 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7D637692D33AC81D82E00B3 /* Pods-SLMusic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -320,6 +395,7 @@
 		};
 		1E195C3B2276F8E5000FEA40 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECAF465D2F2F442C93F86DBC /* Pods-SLMusic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
