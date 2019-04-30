@@ -10,21 +10,79 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Start View Controller-->
         <scene sceneID="O7S-WX-Qt6">
             <objects>
-                <viewController id="4Dl-Kh-1x5" sceneMemberID="viewController">
+                <viewController id="4Dl-Kh-1x5" customClass="startViewController" customModule="SLMusic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yFI-9o-vab">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sl-logo" translatesAutoresizingMaskIntoConstraints="NO" id="C7r-ww-Fb8">
-                                <rect key="frame" x="67" y="138" width="240" height="128"/>
+                                <rect key="frame" x="67" y="134" width="241" height="278"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="singleNote" translatesAutoresizingMaskIntoConstraints="NO" id="znR-IW-MOj">
+                                <rect key="frame" x="248" y="152" width="60" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nusic note" translatesAutoresizingMaskIntoConstraints="NO" id="xrV-ze-iMC">
+                                <rect key="frame" x="230" y="58" width="88" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Från hållplats/ adress" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wCB-yU-QHH">
+                                <rect key="frame" x="67" y="420" width="241" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Till hållplats/adress" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yiz-pL-p7s">
+                                <rect key="frame" x="67" y="458" width="241" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" verticalCompressionResistancePriority="749" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJm-FJ-Ts4">
+                                <rect key="frame" x="67" y="496" width="241" height="65"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="578237009.74160194">
+                                    <!--2019-04-29 13:23:29 +0000-->
+                                </date>
+                                <locale key="locale" localeIdentifier="sv_SE"/>
+                            </datePicker>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="musicnote2" translatesAutoresizingMaskIntoConstraints="NO" id="hAe-ni-mKb">
+                                <rect key="frame" x="285" y="76" width="82" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIk-nU-Mlx">
+                                <rect key="frame" x="67" y="588" width="241" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Sök resa " image="Skärmavbild 2019-04-29 kl. 15.45.30"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9Q-78-QBx">
+                                <rect key="frame" x="128" y="367" width="119" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
+                                <color key="textColor" red="0.0" green="0.65020495653152466" blue="0.91642218828201294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soundcloud" translatesAutoresizingMaskIntoConstraints="NO" id="CTz-yL-qPD">
+                                <rect key="frame" x="236" y="392" width="13" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="1Zn-hw-vmo"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CTz-yL-qPD" firstAttribute="top" secondItem="yFI-9o-vab" secondAttribute="top" constant="392" id="5UN-V8-zBT"/>
+                            <constraint firstItem="WuW-y4-Z5d" firstAttribute="trailing" secondItem="CTz-yL-qPD" secondAttribute="trailing" constant="126" id="TAq-47-1MZ"/>
+                            <constraint firstItem="CTz-yL-qPD" firstAttribute="leading" secondItem="WuW-y4-Z5d" secondAttribute="leading" constant="236" id="UXF-WP-yHc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="WuW-y4-Z5d"/>
                     </view>
                 </viewController>
@@ -34,6 +92,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Skärmavbild 2019-04-29 kl. 15.45.30" width="442" height="90"/>
+        <image name="musicnote2" width="385" height="720"/>
+        <image name="nusic note" width="456" height="599"/>
+        <image name="singleNote" width="563" height="559"/>
         <image name="sl-logo" width="315" height="278"/>
+        <image name="soundcloud" width="434" height="433"/>
     </resources>
 </document>
