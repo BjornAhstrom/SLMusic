@@ -13,7 +13,7 @@
         <!--Start View Controller-->
         <scene sceneID="O7S-WX-Qt6">
             <objects>
-                <viewController id="4Dl-Kh-1x5" customClass="startViewController" customModule="SLMusic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4Dl-Kh-1x5" customClass="StartViewController" customModule="SLMusic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yFI-9o-vab">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,6 +85,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WuW-y4-Z5d"/>
                     </view>
+                    <connections>
+                        <outlet property="fromStation" destination="wCB-yU-QHH" id="wbq-MU-Zuw"/>
+                        <outlet property="search" destination="iIk-nU-Mlx" id="Mo0-Z6-Wb6"/>
+                        <outlet property="timePicker" destination="lJm-FJ-Ts4" id="fS1-hp-bP1"/>
+                        <outlet property="toStation" destination="yiz-pL-p7s" id="Xf3-iA-37J"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xeS-A3-ZfG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
