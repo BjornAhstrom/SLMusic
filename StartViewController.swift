@@ -9,6 +9,13 @@
 import UIKit
 
 class StartViewController: UIViewController {
+    
+    @IBOutlet weak var fromStation: UITextField!
+    @IBOutlet weak var toStation: UITextField!
+    @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var search: UIButton!
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
