@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F086DF4227AEDFF0030A128 /* TripChosenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */; };
 		1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */; };
 		1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2C2276F8E4000FEA40 /* ViewController.swift */; };
 		1E195C302276F8E4000FEA40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C2E2276F8E4000FEA40 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripChosenViewController.swift; sourceTree = "<group>"; };
 		1E195C272276F8E4000FEA40 /* SLMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E195C2C2276F8E4000FEA40 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F086DF2227AEDB70030A128 /* Trip Chosen View Controller Luan */ = {
+			isa = PBXGroup;
+			children = (
+				0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */,
+			);
+			path = "Trip Chosen View Controller Luan";
+			sourceTree = "<group>";
+		};
 		1E195C1E2276F8E4000FEA40 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +70,7 @@
 		1E195C292276F8E4000FEA40 /* SLMusic */ = {
 			isa = PBXGroup;
 			children = (
+				0F086DF2227AEDB70030A128 /* Trip Chosen View Controller Luan */,
 				1E195C49227857F7000FEA40 /* Trip View Controller Björn */,
 				413BCA3F22772B260095B2F7 /* StartViewController.swift */,
 				1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */,
@@ -156,6 +167,7 @@
 				1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */,
 				1E195C4F22785A01000FEA40 /* TripViewController.swift in Sources */,
 				1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */,
+				0F086DF4227AEDFF0030A128 /* TripChosenViewController.swift in Sources */,
 				413BCA4022772B260095B2F7 /* StartViewController.swift in Sources */,
 				1E195C5122785A23000FEA40 /* TripCell.swift in Sources */,
 			);
