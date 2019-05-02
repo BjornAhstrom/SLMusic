@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		034BB786227B55920029A0A4 /* AVPLayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BB785227B55920029A0A4 /* AVPLayerVC.swift */; };
 		1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */; };
 		1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2C2276F8E4000FEA40 /* ViewController.swift */; };
 		1E195C302276F8E4000FEA40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C2E2276F8E4000FEA40 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		034BB785227B55920029A0A4 /* AVPLayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPLayerVC.swift; sourceTree = "<group>"; };
 		1E195C272276F8E4000FEA40 /* SLMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E195C2C2276F8E4000FEA40 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				413BCA3F22772B260095B2F7 /* StartViewController.swift */,
 				1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */,
 				1E195C2C2276F8E4000FEA40 /* ViewController.swift */,
+				034BB785227B55920029A0A4 /* AVPLayerVC.swift */,
 				1E195C2E2276F8E4000FEA40 /* Main.storyboard */,
 				1E195C312276F8E5000FEA40 /* Assets.xcassets */,
 				1E195C332276F8E5000FEA40 /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				034BB786227B55920029A0A4 /* AVPLayerVC.swift in Sources */,
 				1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */,
 				1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */,
 				413BCA4022772B260095B2F7 /* StartViewController.swift in Sources */,

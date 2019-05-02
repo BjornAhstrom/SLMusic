@@ -90,11 +90,116 @@
             </objects>
             <point key="canvasLocation" x="212" y="136.69950738916256"/>
         </scene>
+        <!--LayerVC-->
+        <scene sceneID="6bx-xf-fjN">
+            <objects>
+                <viewController id="ep1-6w-Ddc" customClass="AVPLayerVC" customModule="player" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UfF-1Q-htO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pb4-Mi-PfN">
+                                <rect key="frame" x="16" y="44" width="343" height="405"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="z4F-vv-euB">
+                                <rect key="frame" x="14" y="496" width="347" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.53279840950000001" green="0.79437547919999996" blue="0.88236814740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="maximumTrackTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="thumbTintColor" red="0.53279840950000001" green="0.79437547919999996" blue="0.88236814740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="musikSliderAction:" destination="ep1-6w-Ddc" eventType="valueChanged" id="vg3-2e-rru"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Musik name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBv-Zj-zV7">
+                                <rect key="frame" x="16" y="457" width="343" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfL-Zj-IhV">
+                                <rect key="frame" x="24" y="533" width="34" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="04:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVr-Dp-3as">
+                                <rect key="frame" x="319" y="533" width="34" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="1" green="0.99997597930000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Beräknad Restid: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cT-Rm-O3D">
+                                <rect key="frame" x="25" y="685" width="324" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20:22" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhQ-zm-Ai2">
+                                <rect key="frame" x="25" y="728" width="324" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jXX-Ka-Wvk">
+                                <rect key="frame" x="162" y="560" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="playBtn"/>
+                                <connections>
+                                    <action selector="playBtnClicked:" destination="ep1-6w-Ddc" eventType="touchUpInside" id="9jL-p0-UQ9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqw-PD-vjZ">
+                                <rect key="frame" x="241" y="560" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="next"/>
+                                <connections>
+                                    <action selector="nextBtnClicked:" destination="ep1-6w-Ddc" eventType="touchUpInside" id="RfM-cg-rEA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASh-O2-wOq">
+                                <rect key="frame" x="84" y="560" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="prev"/>
+                                <connections>
+                                    <action selector="prevBtnClicked:" destination="ep1-6w-Ddc" eventType="touchUpInside" id="TpO-ic-dbc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="dHO-nL-nUb"/>
+                    </view>
+                    <connections>
+                        <outlet property="MusikTimerMainLbl" destination="zhQ-zm-Ai2" id="Rjy-d9-Ye6"/>
+                        <outlet property="musikImage" destination="Pb4-Mi-PfN" id="nTp-xC-Lyy"/>
+                        <outlet property="musikNameLbl" destination="RBv-Zj-zV7" id="GuQ-Fw-I7i"/>
+                        <outlet property="musikSlider" destination="z4F-vv-euB" id="sKK-oz-yOF"/>
+                        <outlet property="musikTimerBeginLbl" destination="PfL-Zj-IhV" id="Nqo-Lq-dnB"/>
+                        <outlet property="musikTimerFinishLbl" destination="jVr-Dp-3as" id="aAc-F5-pld"/>
+                        <outlet property="nextBtn" destination="Cqw-PD-vjZ" id="OV8-3b-J69"/>
+                        <outlet property="playBtn" destination="jXX-Ka-Wvk" id="n8W-ch-he7"/>
+                        <outlet property="prevBtn" destination="ASh-O2-wOq" id="lhj-Kd-htn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rnP-Hh-JE2" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1064.8" y="136.69950738916256"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Skärmavbild 2019-04-29 kl. 15.45.30" width="442" height="90"/>
         <image name="musicnote2" width="385" height="720"/>
+        <image name="next" width="16" height="16"/>
         <image name="nusic note" width="456" height="599"/>
+        <image name="playBtn" width="16" height="16"/>
+        <image name="prev" width="16" height="16"/>
         <image name="singleNote" width="563" height="559"/>
         <image name="sl-logo" width="315" height="278"/>
         <image name="soundcloud" width="434" height="433"/>
