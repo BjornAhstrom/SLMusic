@@ -28,16 +28,22 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
             if let data = data {
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    //print("!!!!!!!! \(json)")
-
-                    guard let buses = json as? [Any] else { return }
-
-                    for info in buses {
-                        guard let infoDict = info as? [String : Any] else { return }
-                        guard let stopArea = infoDict["StopAreaName"] as? String else { return }
-
-                        print("!!!!!!!!! \(stopArea)")
+                    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
+                        if let buses = json["Buses"] as? [String : Any] {
+                            if let destination = buses["Destination"] as? [String : Any] {
+                                print("!!!!!!!!!! \(destination)")
+                            }
+                        }
+//                    print("!!!!!!!! \(json)")
+//
+//                    guard let buses = json as? [Any] else { return }
+//
+//                    for information in buses {
+//                        guard let info = information as? [String : Any] else { return }
+//                        guard let stopArea = info["StopAreaName"] as? String else { return }
+//
+//                        print("!!!!!!!!! \(stopArea)")
                     }
 
                 } catch {
