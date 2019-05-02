@@ -11,7 +11,6 @@ import UIKit
 class TripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tripTableView: UITableView!
     
-    var test: [String:Any] = [:]
     var areaNumber: Int = 9192
     
     override func viewDidLoad() {
@@ -19,20 +18,34 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tripTableView.dataSource = self
         tripTableView.delegate = self
         
-        guard let url = URL(string: "http://api.sl.se/api2/realtimedeparturesV4.json?key=c40fe26f05b647a484397437b6aadbd9&siteid=\(areaNumber)&timewindow=10") else { return }
+        guard let urlString = URL(string: "http://api.sl.se/api2/realtimedeparturesV4.json?key=c40fe26f05b647a484397437b6aadbd9&siteid=\(areaNumber)&timewindow=10") else { return }
         
         let session = URLSession.shared
-        session.dataTask(with: url) { (data, response, error) in
+        session.dataTask(with: urlString) { (data, response, error) in
             if let response = response {
-                print(response)
+                print("Response \(response)")
             }
-            
+
             if let data = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print("!!!!!!!! \(json)")
+                    //print("!!!!!!!! \(json)")
+
+                    guard let buses = json as? [Any] else { return }
+
+                    for info in buses {
+                        guard let infoDict = info as? [String : Any] else { return }
+                        guard let stopArea = infoDict["StopAreaName"] as? String else { return }
+
+                        print("!!!!!!!!! \(stopArea)")
+                    }
+
                 } catch {
                     print(error)
+                }
+                
+                if let error = error {
+                    print(error.localizedDescription)
                 }
             }
         }.resume()
@@ -53,8 +66,6 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-//        let destination = UIViewController() as? TripViewController // Ska bytas ut när luan har skapat sin klass
-//        navigationController?.pushViewController(destination!, animated: true)
     }
 
 }
