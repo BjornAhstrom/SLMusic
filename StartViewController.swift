@@ -6,6 +6,8 @@
 //  Copyright © 2019 Björn Åhström. All rights reserved.
 //
 
+//Sök på restiden för playlisten
+
 import UIKit
 import Alamofire
 
@@ -16,8 +18,8 @@ class StartViewController: UIViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var search: UIButton!
     
-    let stations = ["Abrahamsberg": "Abb",
-        "Akalla": "Aka","Alby": "Alb","Alvik": "Alv","Aspudden": "Asu","Axelsberg": "Axb","Bagarmossen": "Bam","Bandhagen": "Bah",]
+    //let stations = ["Abrahamsberg": "Abb",
+    //   "Akalla": "Aka","Alby": "Alb","Alvik": "Alv","Aspudden": "Asu","Axelsberg": "Axb","Bagarmossen": "Bam","Bandhagen": "Bah",]
     
     var toStationName = ""
     var fromStationName = ""
@@ -26,50 +28,18 @@ class StartViewController: UIViewController {
     var siteID = ""
     var siteID2 = ""
     var departureTime = NSDate()
-    
- 
-    
+
     override func viewDidLoad() {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat =  "HH:mm"
         
-        /*guard let trip = URL(string: "https://api.sl.se/api2/typeahead.json?key=ca35ed126dfa42c69bef67cb1c3ba5df&searchstring=Slussen&stationsonly=true&maxresults=1") else { return }
-        
-        let session = URLSession.shared
-        session.dataTask(with: trip) { (data, response, error) in
-            if let response = response {
-                print("Response \(response)")
-            }
-            
-            if let data = data {
-                do {
-                    print("!!!!!!!! START")
-                    guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { return }
-                    
-                   print("!!!!!\(json)")
-                    
-                } catch {
-                    print(error)
-                }
-                
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-            }
-            }.resume()*/
-        
-       
- 
         let startStation = fromStation.text!
         let endStation = toStation.text!
         let departureTime = timePicker.date
         
-        
-        
-      
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -82,11 +52,7 @@ class StartViewController: UIViewController {
                 
             }
         }
-    
-  
-    
-
-}
+    }
     @IBAction func searchTrip(_ sender: UIButton) {
         print("timepicker-------------")
         print(timePicker.date)
@@ -94,7 +60,6 @@ class StartViewController: UIViewController {
         print("Searching trip")
         fromStationName = fromStation.text!
         toStationName = toStation.text!
-        
         
         guard let trip = URL(string: "https://api.sl.se/api2/typeahead.json?key=ca35ed126dfa42c69bef67cb1c3ba5df&searchstring=\(fromStationName)&stationsonly=true&maxresults=1") else { return }
         
@@ -109,7 +74,7 @@ class StartViewController: UIViewController {
                     guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { return }
                     
                     guard let responseData = json["ResponseData"] as? [[String : Any]] else { return }
-                     let test = responseData[0]
+                    let test = responseData[0]
                     guard let siteId = test["SiteId"] as? String else { return }
                     
                     print("start id 1 \(siteId)")
@@ -132,7 +97,7 @@ class StartViewController: UIViewController {
             }
             if let data = data {
                 do {
-                
+                    
                     guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { return }
                     
                     guard let responseData = json["ResponseData"] as? [[String : Any]] else { return }
