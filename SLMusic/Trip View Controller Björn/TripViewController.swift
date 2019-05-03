@@ -12,7 +12,11 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
    
     
     @IBOutlet weak var tripTableView: UITableView!
-    
+    var siteID = ""
+    var siteID2 = ""
+    var departureTime = NSDate()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tripTableView.dataSource = self

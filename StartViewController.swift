@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class StartViewController: UIViewController {
     
@@ -15,36 +16,139 @@ class StartViewController: UIViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var search: UIButton!
     
+    let stations = ["Abrahamsberg": "Abb",
+        "Akalla": "Aka","Alby": "Alb","Alvik": "Alv","Aspudden": "Asu","Axelsberg": "Axb","Bagarmossen": "Bam","Bandhagen": "Bah",]
     
-
+    var toStationName = ""
+    var fromStationName = ""
+    var toStationRef = ""
+    var fromStationRed = ""
+    var siteID = ""
+    var siteID2 = ""
+    var departureTime = NSDate()
+    
+ 
+    
     override func viewDidLoad() {
-        let urlString = URL(string: "https://api.resrobot.se/v2/departureBoard.json?key=9ee1eedf-83c1-4b59-9b1c-826935605b24&id=740000001&date=2019-04-30&time=12:10&passlist=0")
-        if let url = urlString {
-            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if error != nil {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "HH:mm"
+        
+        /*guard let trip = URL(string: "https://api.sl.se/api2/typeahead.json?key=ca35ed126dfa42c69bef67cb1c3ba5df&searchstring=Slussen&stationsonly=true&maxresults=1") else { return }
+        
+        let session = URLSession.shared
+        session.dataTask(with: trip) { (data, response, error) in
+            if let response = response {
+                print("Response \(response)")
+            }
+            
+            if let data = data {
+                do {
+                    print("!!!!!!!! START")
+                    guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { return }
+                    
+                   print("!!!!!\(json)")
+                    
+                } catch {
                     print(error)
-                } else {
-                    if let usableData = data {
-                        print(usableData) //JSONSerialization
-                    }
+                }
+                
+                if let error = error {
+                    print(error.localizedDescription)
                 }
             }
-            task.resume()
-        }
+            }.resume()*/
+        
+       
+ 
+        let startStation = fromStation.text!
+        let endStation = toStation.text!
+        let departureTime = timePicker.date
+        
+        
+        
+      
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goToResult"  {
+            if let destination = segue.destination as? TripViewController {
+                destination.siteID = siteID
+                destination.siteID2 = siteID2
+                destination.departureTime = departureTime
+                
+            }
+        }
+    
+  
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+    @IBAction func searchTrip(_ sender: UIButton) {
+        print("timepicker-------------")
+        print(timePicker.date)
+        
+        print("Searching trip")
+        fromStationName = fromStation.text!
+        toStationName = toStation.text!
+        
+        
+        guard let trip = URL(string: "https://api.sl.se/api2/typeahead.json?key=ca35ed126dfa42c69bef67cb1c3ba5df&searchstring=\(fromStationName)&stationsonly=true&maxresults=1") else { return }
+        
+        let session = URLSession.shared
+        session.dataTask(with: trip) { (data, response, error) in
+            if let response = response {
+                //print("Response \(response)")
+            }
+            if let data = data {
+                do {
+                    
+                    guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { return }
+                    
+                    guard let responseData = json["ResponseData"] as? [[String : Any]] else { return }
+                     let test = responseData[0]
+                    guard let siteId = test["SiteId"] as? String else { return }
+                    
+                    print("start id 1 \(siteId)")
+                    
+                } catch {
+                    print(error)
+                }
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+            }.resume()
+        
+        guard let trip2 = URL(string: "https://api.sl.se/api2/typeahead.json?key=ca35ed126dfa42c69bef67cb1c3ba5df&searchstring=\(toStationName)&stationsonly=true&maxresults=1") else { return }
+        
+        let session2 = URLSession.shared
+        session.dataTask(with: trip2) { (data, response, error) in
+            if let response = response {
+                //print("Response \(response)")
+            }
+            if let data = data {
+                do {
+                
+                    guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { return }
+                    
+                    guard let responseData = json["ResponseData"] as? [[String : Any]] else { return }
+                    let test = responseData[0]
+                    guard let siteId2 = test["SiteId"] as? String else { return }
+                    
+                    print("slut id 2 \(siteId2)")
+                    
+                } catch {
+                    print(error)
+                }
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+            }.resume()
+        
     }
-    */
-
 }
