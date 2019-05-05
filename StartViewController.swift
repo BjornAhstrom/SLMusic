@@ -59,8 +59,6 @@ class StartViewController: UIViewController {
                stationExists = true
             }
         }
-    
-        
         if fromStation.text == "" || toStation.text == "" || stationExists == false {
              let alert = UIAlertController(title: "Error", message: "Du måste fylle i stationsnamn som finns!", preferredStyle: .alert)
             
