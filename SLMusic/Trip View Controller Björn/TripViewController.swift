@@ -12,10 +12,16 @@ import Alamofire
 class TripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tripTableView: UITableView!
     
-    private var SLReseplanerare3_1 = "f8087c9e88564b9f9a53e74a2c37eae5"
+    private let SLReseplanerare3_1 = "f8087c9e88564b9f9a53e74a2c37eae5"
+    private let tripChosenViewControllerId = "tripChosenViewController"
+    private let goToSelectedTripId = "goToSelectedTrip"
     
     var fromSiteId: String?
     var toSiteId: String?
+    var departureStationForChosenTripToPass: String?
+    var departureTimeForChosenTripToPass: String?
+    var arrivalStationForChosenTripToPass: String?
+    var arrivalTimeForChosenTripToPass: String?
     
     var fromDest: Int?
     var toDest: Int?
@@ -28,14 +34,17 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fromDest = Int(fromSiteId ?? "-1")
-        toDest = Int(toSiteId ?? "-1")
+        print("Start")
+        
+        // Odenplan: 9117, Solna: 9305
+        fromDest = Int(fromSiteId ?? "9117")
+        toDest = Int(toSiteId ?? "9305")
         
         tripTableView.dataSource = self
         tripTableView.delegate = self
         //getArrivalDataFromSL()
         
-        //slussen: 9192, Alvik: 9112, odenplan: 9117, solna: 9305
+        //Slussen: 9192, Alvik: 9112
         getDepartureDataFromSL(from: toDest ?? 9192, to: fromDest ?? 9112)
         tripTableView.reloadData()
     }
@@ -49,33 +58,20 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { return }
-            
-            //            let dataAsString = String(data: data, encoding: .utf8)
-            //              print(dataAsString)
-            
             do {
-                //                let stops = try JSONDecoder().decode([CityTransportationStops].self, from: data)
-                //                print(stops)
-                
-                //                let cityTransportations = try JSONDecoder().decode([CityTransportationStop].self, from: data)
-                //                print("!!!!!!!!!!!! \(cityTransportations)")
-                
                 guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { return }
-                //let cityTransportations = CityTransportationStops(json: json)
+
                 guard let stops = json["Stops"] as? [String : Any] else { return }
                 guard let stop = stops["Stop"] as? [[String : Any]] else { return }
                 
                 for s in stop {
                     let cityTransportation = CityTransportationStop(json: s)
                     self.cityTransportationArrival.append(cityTransportation)
-                    //print(cityTransportation.name, cityTransportation.depTime)
+                    
                     DispatchQueue.main.async {
                         self.tripTableView.reloadData()
                     }
                 }
-                //let test = stop[3]
-                //print("!!!!!!!!!!!! \(cityTransportation.name ?? "")")
-                
             } catch let jsonError {
                 print("Error serializing json:", jsonError)
             }
@@ -83,8 +79,6 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func getDepartureDataFromSL(from: Int, to: Int) {
-        print("!!!!!!!!!!!!!!!!!!!!Departure Data from sl")
-        //slussen9192 9112 oden9117 solna9305
         guard let trip =                                                                                                     URL(string:"https://api.sl.se/api2/TravelplannerV3_1/trip.json?key=\(SLReseplanerare3_1)&lang=se&originExtId=\(from)&destExtId=\(to)&maxChange=3&lines=!19") else { return }
         
         let session = URLSession.shared
@@ -98,7 +92,6 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     print("!!!!!!!! Departure Data from sl")
                     guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { return }
                     
-                    //print("!!!!!\(json)")
                     
                     guard let trips = json["Trip"] as? [[String : Any ]] else { return }
                     
@@ -109,46 +102,20 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         for leg in leg {
                             guard let origin = leg["Origin"] as? [String : Any] else { return }
                             guard let dest = leg["Destination"] as? [String : Any] else { return}
-                            //                            print("!!!!!!!!! \(origin)")
-                            //                            print("!!!!!!!!! \(dest)")
-                            //                            let or = Departure(arrJson: origin)
-                            //                            self.departure.append(or)
+                            
                             let de = Departure(start: EndPoint.init(json: origin), end: EndPoint.init(json: dest))
                             self.departure.append(de)
-                            //                            let o = CityTransportationStop(json: origin)
-                            //                            self.cityTransportationDeparture.append(o)
                             
                             guard let journeyDetailRef = leg["JourneyDetailRef"] as? [String : Any] else { return }
                             guard let refId = journeyDetailRef["ref"] as? String else { return }
                             let aString = refId
                             let newString = aString.replacingOccurrences(of: "|", with: "%7C", options: .literal, range: nil)
                             self.getDepartureDataFromJourney(refId: newString)
-                            print("!!!!!\(newString)")
                             DispatchQueue.main.async {
                                 self.tripTableView.reloadData()
                             }
                         }
                     }
-                    
-                    //                    guard let trips = json["Trip"] as? [[String : Any ]] else { return }
-                    //                    let trip = trips[2]
-                    //                    guard let legList = trip["LegList"] as? [String : Any] else { return }
-                    //                    guard let leg = legList["Leg"] as? [[String : Any]] else { return }
-                    //                    let legs = leg[0]
-                    //                    guard let journeyDetailRef = legs["JourneyDetailRef"] as? [String : Any] else { return }
-                    //                    guard let refId = journeyDetailRef["ref"] as? String else { return }
-                    
-                    //                    let buses = responseData["JourneyDetailRef"] as! [[String : Any]]
-                    //                    let bus = buses[0]
-                    //                    let dest = bus["ref"] as! String
-                    //                    let aString = refId
-                    //                    let newString = aString.replacingOccurrences(of: "|", with: "%7C", options: .literal, range: nil)
-                    //
-                    //                    print("!!!!!\(newString)")
-                    
-                    //self.getDeparturelDataFromJourney(refId: newString)
-                    
-                    
                 } catch {
                     print(error)
                 }
@@ -202,8 +169,38 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected row at index \(indexPath.row)")
+
         tableView.deselectRow(at: indexPath, animated: false)
         
+//        guard let indexPath = tableView.indexPathForSelectedRow else {
+//            print("indexpath fail")
+//            return }
+        guard let tripCell = tableView.cellForRow(at: indexPath) as? TripCell else {
+            print("tripcell fail")
+
+            return }
+        
+        departureStationForChosenTripToPass = tripCell.departureStationLabel.text
+        departureTimeForChosenTripToPass = tripCell.departureTimeLabel.text
+        arrivalStationForChosenTripToPass = tripCell.arrivalStationLabel.text
+        arrivalTimeForChosenTripToPass = tripCell.arrivalTimeLabel.text
+        
+      
+        performSegue(withIdentifier: goToSelectedTripId, sender: self)
+        
+        // NotificationCenter.default.post(name: NSNotification.Name(tripChosenViewControllerId), object: nil)
+        
     }
-    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == goToSelectedTripId {
+            if let destination = segue.destination as? TripChosenViewController {
+//                destination.departureStationForChosenTripLabel
+//                destination.departureTimeForChosenTripLabel
+//                destination.arrivalStationForChosenTripLabel
+//                destination.arrivalTimeForChosenTripLabel
+            }
+        }
+    }
 }

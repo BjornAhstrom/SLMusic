@@ -19,6 +19,7 @@ class TripChosenViewController: UIViewController {
     @IBOutlet weak var tripChosenTimeLabel: UILabel!
     
     @IBOutlet weak var musicGenrePickerWheel: UIPickerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
