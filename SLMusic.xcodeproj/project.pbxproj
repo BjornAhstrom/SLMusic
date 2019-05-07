@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
 		0F086DF4227AEDFF0030A128 /* TripChosenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */; };
+=======
+		034BB788227B5C3B0029A0A4 /* AVPLayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BB787227B5C3B0029A0A4 /* AVPLayerVC.swift */; };
+>>>>>>> a2edfa2b91ddf323f5b89d5e60ec7d391e6b6b9f
 		1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */; };
 		1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2C2276F8E4000FEA40 /* ViewController.swift */; };
 		1E195C302276F8E4000FEA40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C2E2276F8E4000FEA40 /* Main.storyboard */; };
@@ -23,7 +27,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+<<<<<<< HEAD
 		0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripChosenViewController.swift; sourceTree = "<group>"; };
+=======
+		034BB787227B5C3B0029A0A4 /* AVPLayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPLayerVC.swift; sourceTree = "<group>"; };
+>>>>>>> a2edfa2b91ddf323f5b89d5e60ec7d391e6b6b9f
 		1E195C272276F8E4000FEA40 /* SLMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E195C2C2276F8E4000FEA40 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +92,7 @@
 				0F086DF2227AEDB70030A128 /* Trip Chosen View Controller Luan */,
 				1E195C49227857F7000FEA40 /* Trip View Controller Björn */,
 				413BCA3F22772B260095B2F7 /* StartViewController.swift */,
+				034BB787227B5C3B0029A0A4 /* AVPLayerVC.swift */,
 				1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */,
 				1E195C2C2276F8E4000FEA40 /* ViewController.swift */,
 				1E195C2E2276F8E4000FEA40 /* Main.storyboard */,
@@ -245,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				034BB788227B5C3B0029A0A4 /* AVPLayerVC.swift in Sources */,
 				1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */,
 				1E195C4F22785A01000FEA40 /* TripViewController.swift in Sources */,
 				1ED6BDBC228167EB00BF42C4 /* EndPoint.swift in Sources */,
