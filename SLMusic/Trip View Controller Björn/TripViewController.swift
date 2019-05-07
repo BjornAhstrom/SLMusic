@@ -14,7 +14,8 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private var SLReseplanerare3_1 = "f8087c9e88564b9f9a53e74a2c37eae5"
     
-    var areaNumber: Int = 9192
+    var fromSiteId: Int = 0
+    var toSiteId: Int = 0
     var cityTransportationDeparture = [CityTransportationStop]() // Avgång
     var cityTransportationArrival = [CityTransportationStop]() // Ankomst
     
@@ -174,7 +175,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let arrName = dep.end.name
         cell?.currentTimeLabel.text = dateString
         cell?.departureStationLabel.text = "Från \(depName ?? "No departure")"
-        cell?.departureTimeLabel.text = "\(depName ?? "00:00")"
+        cell?.departureTimeLabel.text = "\(dep.start.time ?? "00:00")"
         cell?.arrivalStationLabel.text = "Till \(arrName ?? "No destination")"
         cell?.arrivalTimeLabel.text = "\(dep.end.time ?? "00:00")"
         
