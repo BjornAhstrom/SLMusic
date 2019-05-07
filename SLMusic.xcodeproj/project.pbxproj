@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		151D7485B6AC2F2759DFE62E /* Pods_SLMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC989D957D20B2C399C3EAB /* Pods_SLMusic.framework */; };
+		0F086DF4227AEDFF0030A128 /* TripChosenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */; };
 		1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */; };
 		1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2C2276F8E4000FEA40 /* ViewController.swift */; };
 		1E195C302276F8E4000FEA40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C2E2276F8E4000FEA40 /* Main.storyboard */; };
@@ -15,10 +15,15 @@
 		1E195C352276F8E5000FEA40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C332276F8E5000FEA40 /* LaunchScreen.storyboard */; };
 		1E195C4F22785A01000FEA40 /* TripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C4E22785A01000FEA40 /* TripViewController.swift */; };
 		1E195C5122785A23000FEA40 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C5022785A23000FEA40 /* TripCell.swift */; };
+		1EAD34FA227DF63B0021FAD5 /* CityTransportationStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAD34F9227DF63B0021FAD5 /* CityTransportationStop.swift */; };
+		1EAD34FC227DF99D0021FAD5 /* CityTransportationStops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAD34FB227DF99D0021FAD5 /* CityTransportationStops.swift */; };
+		1ED6BDB8228025E100BF42C4 /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED6BDB7228025E100BF42C4 /* Departure.swift */; };
+		1ED6BDBC228167EB00BF42C4 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED6BDBB228167EB00BF42C4 /* EndPoint.swift */; };
 		413BCA4022772B260095B2F7 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413BCA3F22772B260095B2F7 /* StartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripChosenViewController.swift; sourceTree = "<group>"; };
 		1E195C272276F8E4000FEA40 /* SLMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E195C2C2276F8E4000FEA40 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,10 +33,13 @@
 		1E195C362276F8E5000FEA40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E195C4E22785A01000FEA40 /* TripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewController.swift; sourceTree = "<group>"; };
 		1E195C5022785A23000FEA40 /* TripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCell.swift; sourceTree = "<group>"; };
+		1EAD34F9227DF63B0021FAD5 /* CityTransportationStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTransportationStop.swift; sourceTree = "<group>"; };
+		1EAD34FB227DF99D0021FAD5 /* CityTransportationStops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTransportationStops.swift; sourceTree = "<group>"; };
+		1ED6BDB7228025E100BF42C4 /* Departure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Departure.swift; sourceTree = "<group>"; };
+		1ED6BDBB228167EB00BF42C4 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		413BCA3F22772B260095B2F7 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartViewController.swift; path = ../StartViewController.swift; sourceTree = "<group>"; };
 		ECAF465D2F2F442C93F86DBC /* Pods-SLMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLMusic.release.xcconfig"; path = "Target Support Files/Pods-SLMusic/Pods-SLMusic.release.xcconfig"; sourceTree = "<group>"; };
 		F7D637692D33AC81D82E00B3 /* Pods-SLMusic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLMusic.debug.xcconfig"; path = "Target Support Files/Pods-SLMusic/Pods-SLMusic.debug.xcconfig"; sourceTree = "<group>"; };
-		FAC989D957D20B2C399C3EAB /* Pods_SLMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,19 +47,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				151D7485B6AC2F2759DFE62E /* Pods_SLMusic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1276DF24F2B5D9CDE94E1835 /* Frameworks */ = {
+		0F086DF2227AEDB70030A128 /* Trip Chosen View Controller Luan */ = {
 			isa = PBXGroup;
 			children = (
-				FAC989D957D20B2C399C3EAB /* Pods_SLMusic.framework */,
+				0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */,
 			);
-			name = Frameworks;
+			path = "Trip Chosen View Controller Luan";
 			sourceTree = "<group>";
 		};
 		1E195C1E2276F8E4000FEA40 = {
@@ -60,7 +67,6 @@
 				1E195C292276F8E4000FEA40 /* SLMusic */,
 				1E195C282276F8E4000FEA40 /* Products */,
 				595854F3B369E9ED2BA70365 /* Pods */,
-				1276DF24F2B5D9CDE94E1835 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,7 +81,8 @@
 		1E195C292276F8E4000FEA40 /* SLMusic */ = {
 			isa = PBXGroup;
 			children = (
-				1E195C49227857F7000FEA40 /* Trip View Controller Björn */,
+				0F086DF2227AEDB70030A128 /* Trip Chosen View Controller Luan */,
+				1E195C49227857F7000FEA40 /* Trip View Controller Björn */,
 				413BCA3F22772B260095B2F7 /* StartViewController.swift */,
 				1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */,
 				1E195C2C2276F8E4000FEA40 /* ViewController.swift */,
@@ -87,14 +94,26 @@
 			path = SLMusic;
 			sourceTree = "<group>";
 		};
-		1E195C49227857F7000FEA40 /* Trip View Controller Björn */ = {
+		1E195C49227857F7000FEA40 /* Trip View Controller Björn */ = {
 			isa = PBXGroup;
 			children = (
+				1EAD34F8227DF5840021FAD5 /* Model */,
 				1E195C4E22785A01000FEA40 /* TripViewController.swift */,
 				1E195C5022785A23000FEA40 /* TripCell.swift */,
 			);
 			name = "Trip View Controller Björn";
 			path = "Trip View Controller Björn";
+			sourceTree = "<group>";
+		};
+		1EAD34F8227DF5840021FAD5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1EAD34F9227DF63B0021FAD5 /* CityTransportationStop.swift */,
+				1EAD34FB227DF99D0021FAD5 /* CityTransportationStops.swift */,
+				1ED6BDB7228025E100BF42C4 /* Departure.swift */,
+				1ED6BDBB228167EB00BF42C4 /* EndPoint.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		595854F3B369E9ED2BA70365 /* Pods */ = {
@@ -103,7 +122,6 @@
 				F7D637692D33AC81D82E00B3 /* Pods-SLMusic.debug.xcconfig */,
 				ECAF465D2F2F442C93F86DBC /* Pods-SLMusic.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -229,7 +247,12 @@
 			files = (
 				1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */,
 				1E195C4F22785A01000FEA40 /* TripViewController.swift in Sources */,
+				1ED6BDBC228167EB00BF42C4 /* EndPoint.swift in Sources */,
+				1EAD34FC227DF99D0021FAD5 /* CityTransportationStops.swift in Sources */,
+				1EAD34FA227DF63B0021FAD5 /* CityTransportationStop.swift in Sources */,
 				1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */,
+				0F086DF4227AEDFF0030A128 /* TripChosenViewController.swift in Sources */,
+				1ED6BDB8228025E100BF42C4 /* Departure.swift in Sources */,
 				413BCA4022772B260095B2F7 /* StartViewController.swift in Sources */,
 				1E195C5122785A23000FEA40 /* TripCell.swift in Sources */,
 			);
