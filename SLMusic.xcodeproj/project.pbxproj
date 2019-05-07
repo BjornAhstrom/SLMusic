@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		034BB788227B5C3B0029A0A4 /* AVPLayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BB787227B5C3B0029A0A4 /* AVPLayerVC.swift */; };
+		036DCA9B227F577C008678B2 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036DCA9A227F577C008678B2 /* SpotifyiOS.framework */; };
+		036DCAB922809E95008678B2 /* LoginToSpotifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DCAB822809E95008678B2 /* LoginToSpotifyVC.swift */; };
 		1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */; };
 		1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2C2276F8E4000FEA40 /* ViewController.swift */; };
 		1E195C302276F8E4000FEA40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C2E2276F8E4000FEA40 /* Main.storyboard */; };
@@ -18,6 +20,9 @@
 
 /* Begin PBXFileReference section */
 		034BB787227B5C3B0029A0A4 /* AVPLayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPLayerVC.swift; sourceTree = "<group>"; };
+		036DCA9A227F577C008678B2 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
+		036DCAB4227F7E3E008678B2 /* SLMusic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SLMusic-Bridging-Header.h"; sourceTree = "<group>"; };
+		036DCAB822809E95008678B2 /* LoginToSpotifyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToSpotifyVC.swift; sourceTree = "<group>"; };
 		1E195C272276F8E4000FEA40 /* SLMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E195C2C2276F8E4000FEA40 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				036DCA9B227F577C008678B2 /* SpotifyiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,14 +64,17 @@
 		1E195C292276F8E4000FEA40 /* SLMusic */ = {
 			isa = PBXGroup;
 			children = (
+				036DCA9A227F577C008678B2 /* SpotifyiOS.framework */,
+				1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */,
+				036DCAB822809E95008678B2 /* LoginToSpotifyVC.swift */,
 				413BCA3F22772B260095B2F7 /* StartViewController.swift */,
 				034BB787227B5C3B0029A0A4 /* AVPLayerVC.swift */,
-				1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */,
 				1E195C2C2276F8E4000FEA40 /* ViewController.swift */,
 				1E195C2E2276F8E4000FEA40 /* Main.storyboard */,
 				1E195C312276F8E5000FEA40 /* Assets.xcassets */,
 				1E195C332276F8E5000FEA40 /* LaunchScreen.storyboard */,
 				1E195C362276F8E5000FEA40 /* Info.plist */,
+				036DCAB4227F7E3E008678B2 /* SLMusic-Bridging-Header.h */,
 			);
 			path = SLMusic;
 			sourceTree = "<group>";
@@ -102,6 +111,7 @@
 				TargetAttributes = {
 					1E195C262276F8E4000FEA40 = {
 						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -144,6 +154,7 @@
 				034BB788227B5C3B0029A0A4 /* AVPLayerVC.swift in Sources */,
 				1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */,
 				1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */,
+				036DCAB922809E95008678B2 /* LoginToSpotifyVC.swift in Sources */,
 				413BCA4022772B260095B2F7 /* StartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,16 +301,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SLMusic/ios-sdk-1.0.2",
+					"$(PROJECT_DIR)/SLMusic",
+					"$(PROJECT_DIR)/SLMusic/ios-sdk-master",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SLMusic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = se.Bjorn.Ahstrom.SLMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SLMusic/SLMusic-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -309,16 +331,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SLMusic/ios-sdk-1.0.2",
+					"$(PROJECT_DIR)/SLMusic",
+					"$(PROJECT_DIR)/SLMusic/ios-sdk-master",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SLMusic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = se.Bjorn.Ahstrom.SLMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SLMusic/SLMusic-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -44,10 +44,10 @@ class AVPLayerVC: UIViewController {
     }
     
    
-    
-    func isPlaying() -> Bool {
-        return player?.rate != nil && player?.rate != 0
-    }
+//    
+//    func isPlaying() -> Bool {
+//        return player?.rate != nil && player?.rate != 0
+//    }
 
     @IBAction func prevBtnClicked(_ sender: Any) {
     }
@@ -63,11 +63,11 @@ class AVPLayerVC: UIViewController {
 //            audioPlayer.pause()
 //        }
         
-        if isPlaying {
-            player!.pause()
-        } else {
-            player!.play()
-        }
+//        if isPlaying {
+//            player!.pause()
+//        } else {
+//            player!.play()
+//        }
         
     }
     
