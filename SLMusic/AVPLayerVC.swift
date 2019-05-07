@@ -22,64 +22,64 @@ class AVPLayerVC: UIViewController {
     @IBOutlet weak var MusikTimerMainLbl: UILabel!
     
     
-  
-    
-  
-
-    //var player:AVAudioPlayer = AVAudioPlayer()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-//        do
-//        {
-//            let audioPath = Bundle.main.path(forResource: "song", ofType: "mp3")
-//            try player = AVAudioPlayer(contentsOf:, fileTypeHint: <#T##String?#>)
-//        }
-//        catch
-//        {
-//            //ERROR
-//        }
-    }
-    
-   
-    
-    func isPlaying() -> Bool {
-        return player?.rate != nil && player?.rate != 0
-    }
-
-    @IBAction func prevBtnClicked(_ sender: Any) {
-    }
-    
-    
-    @IBAction func playBtnClicked(_ sender: Any) {
-        
-//        if player.isPlaying == false {
-//            pl.play()
+//
+//
+//
+//
+//    //var player:AVAudioPlayer = AVAudioPlayer()
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        // Do any additional setup after loading the view.
+//
+////        do
+////        {
+////            let audioPath = Bundle.main.path(forResource: "song", ofType: "mp3")
+////            try player = AVAudioPlayer(contentsOf:, fileTypeHint: <#T##String?#>)
+////        }
+////        catch
+////        {
+////            //ERROR
+////        }
+//    }
+//
+//
+//
+//    func isPlaying() -> Bool {
+//        return player?.rate != nil && player?.rate != 0
+//    }
+//
+//    @IBAction func prevBtnClicked(_ sender: Any) {
+//    }
+//
+//
+//    @IBAction func playBtnClicked(_ sender: Any) {
+//
+////        if player.isPlaying == false {
+////            pl.play()
+////        }
+////
+////        if audioPlayer.isPlaying {
+////            audioPlayer.pause()
+////        }
+//
+//        if isPlaying {
+//            player!.pause()
+//        } else {
+//            player!.play()
 //        }
 //
-//        if audioPlayer.isPlaying {
-//            audioPlayer.pause()
-//        }
-        
-        if isPlaying {
-            player!.pause()
-        } else {
-            player!.play()
-        }
-        
-    }
-    
-    
-    @IBAction func nextBtnClicked(_ sender: Any) {
-        
-        
-    }
-    
-    @IBAction func musikSliderAction(_ sender: Any) {
-        
-    }
+//    }
+//
+//
+//    @IBAction func nextBtnClicked(_ sender: Any) {
+//
+//
+//    }
+//
+//    @IBAction func musikSliderAction(_ sender: Any) {
+//
+//    }
     
     
 }
