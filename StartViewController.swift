@@ -18,9 +18,7 @@ class StartViewController: UIViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var search: UIButton!
     
-    
-    
-    let stations = ["Abrahamsberg","Akalla","Alby","Alvik","Aspudden","Axelsberg","Bagarmossen","Bandhagen","Bergshamra","Björkhagen","Blackeberg", "Blåsut", "Bredäng",    "Brommaplan",  "Danderyds sjukhus","Duvbo", "Enskede gård", "Farsta", "Farsta strand", "Fittja", "Fridhemsplan", "Fridhemsplan", "Fruängen", "Gamla stan", "Globen", "Gubbängen", "Gullmarsplan", "Gärdet", "Hagsätra", "Hallonbergen", "Hallunda", "Hammarbyhöjden", "Hjulsta", "Hornstull", "Husby", "Huvudsta", "Hägerstensåsen", "Hässelby gård", "Hässelby strand","Högdalen","Hökarängen","Hötorget","Islandstorget","Johannelund","Karlaplan","Kista","Kristineberg","Kungsträdgården","Kärrtorp","Liljeholmen","Mariatorget","Masmo","Medborgarplatsen","Midsommarkransen","Mälarhöjden","Mörby centrum","Norsborg","Näckrosen","Odenplan","Rinkeby","Rissne","Ropsten","Råcksta","Rådhuset","Rådmansgatan","Rågsved","S:t Eriksplan","Sandsborg","Skanstull","Skarpnäck","Skogskyrkogården","Skärholmen","Skärmarbrink","Slussen","Sockenplan","Solna centrum","Stadion","Stadshagen","Stora mossen","Stureby","Sundbybergs centrum","Svedmyra","Sätra","T-Centralen","Tallkrogen","Tekniska högskolan","Telefonplan","Tensta","Thorildsplan","Universitetet","Vreten","Vårberg","Vårby gård","Vällingby","Västertorp","Västra skogen","Zinkensdamm","Åkeshov","Ängbyplan","Örnsberg","Östermalmstorg"]
+    let stations = ["Abrahamsberg","Akalla","Alby","Alvik","Aspudden","Axelsberg","Bagarmossen","Bandhagen","Bergshamra","Björkhagen","Blackeberg", "Blåsut", "Bredäng",    "Brommaplan",  "Danderyds sjukhus","Duvbo", "Enskede gård", "Farsta", "Farsta strand", "Fittja", "Fridhemsplan", "Fridhemsplan", "Fruängen", "Gamla stan", "Globen", "Gubbängen", "Gullmarsplan", "Gärdet", "Hagsätra", "Hallonbergen", "Hallunda", "Hammarbyhöjden", "Hjulsta", "Hornstull", "Husby", "Huvudsta", "Hägerstensåsen", "Hässelby gård", "Hässelby strand","Högdalen","Hökarängen","Hötorget","Islandstorget","Johannelund","Karlaplan","Kista","Kristineberg","Kungsträdgården","Kärrtorp","Liljeholmen","Mariatorget","Masmo","Medborgarplatsen","Midsommarkransen","Mälarhöjden","Mörby centrum","Norsborg","Näckrosen","Odenplan","Rinkeby","Rissne","Ropsten","Råcksta","Rådhuset","Rådmansgatan","Rågsved","S:t Eriksplan","Sandsborg","Skanstull","Skarpnäck","Skogskyrkogården","Skärholmen","Skärmarbrink","Slussen","Sockenplan","Solna centrum","Stadion","Stadshagen","Stora mossen","Stureby","Sundbybergs centrum","Svedmyra","Sätra","T-Centralen","Tallkrogen","Tekniska högskolan","Telefonplan","Tensta","Thorildsplan","Universitetet","Vreten","Vårberg","Vårby gård","Vällingby","Västertorp","Västra skogen","Zinkensdamm","Åkeshov","Ängbyplan","Örnsberg","Östermalmstorg", "test1", "test"]
 
     var toStationName = ""
     var fromStationName = ""
@@ -32,7 +30,21 @@ class StartViewController: UIViewController {
     var stationExists = false
 
     override func viewDidLoad() {
-       
+        
+        //http://api.sl.se/api2/realtimedeparturesv4.json?key=01d6897342ce40b0a5ded8df798389e7&siteid=9192&timewindow=5
+        
+      
+        AF.request("http://api.sl.se/api2/TravelplannerV3_1/trip.json?key=5cd013f40caa4e44b9c7efea27a974a0&originId=9192&destId=9112&searchForArrival=0").responseJSON { response in
+            switch response.result {
+            case .success(let json):
+                print(json)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+        
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat =  "HH:mm"
         
@@ -66,6 +78,13 @@ class StartViewController: UIViewController {
             
             self.present(alert, animated: true)
         }
+        
+        
+       
+        
+        
+        
+        
        
         if stationExists == true{
             
@@ -89,6 +108,7 @@ class StartViewController: UIViewController {
                         guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { return }
                         
                         guard let responseData = json["ResponseData"] as? [[String : Any]] else { return }
+                        
                         let test = responseData[0]
                         guard let siteId = test["SiteId"] as? String else { return }
                         
