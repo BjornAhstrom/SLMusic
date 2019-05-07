@@ -28,6 +28,7 @@ class StartViewController: UIViewController {
     var siteID2 = ""
     var departureTime = NSDate()
     var stationExists = false
+    var i = 0
 
     override func viewDidLoad() {
         
@@ -56,21 +57,21 @@ class StartViewController: UIViewController {
         
         if segue.identifier == "goToResult"  {
             if let destination = segue.destination as? TripViewController {
-                destination.siteID = siteID
-                destination.siteID2 = siteID2
+                destination.fromSiteId = siteID
+                destination.toSiteId = siteID2
                 destination.departureTime = departureTime
                 
             }
         }
     }
     @IBAction func searchTrip(_ sender: UIButton) {
-        
-        
-            for station in stations {
-            if toStation.text!.lowercased() == station.lowercased() {
-               stationExists = true
+        for station in stations{
+            if fromStation.text?.lowercased() == station.lowercased() {
+                stationExists = true
             }
+            
         }
+       
         if fromStation.text == "" || toStation.text == "" || stationExists == false {
              let alert = UIAlertController(title: "Error", message: "Du måste fylle i stationsnamn som finns!", preferredStyle: .alert)
             
@@ -79,13 +80,6 @@ class StartViewController: UIViewController {
             self.present(alert, animated: true)
         }
         
-        
-       
-        
-        
-        
-        
-       
         if stationExists == true{
             
             print("timepicker-------------")
@@ -149,7 +143,12 @@ class StartViewController: UIViewController {
                 }
             }
             }.resume()
-            
+            performSegue(withIdentifier: "searchTrip", sender: self)
+            for station in stations {
+                if toStation.text!.lowercased() == station.lowercased() {
+                    stationExists = true
+                }
+            }
         }
     }
 }
