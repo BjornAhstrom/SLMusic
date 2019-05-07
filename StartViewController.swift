@@ -19,7 +19,7 @@ class StartViewController: UIViewController {
     @IBOutlet weak var search: UIButton!
     
     let stations = ["Abrahamsberg","Akalla","Alby","Alvik","Aspudden","Axelsberg","Bagarmossen","Bandhagen","Bergshamra","Björkhagen","Blackeberg", "Blåsut", "Bredäng",    "Brommaplan",  "Danderyds sjukhus","Duvbo", "Enskede gård", "Farsta", "Farsta strand", "Fittja", "Fridhemsplan", "Fridhemsplan", "Fruängen", "Gamla stan", "Globen", "Gubbängen", "Gullmarsplan", "Gärdet", "Hagsätra", "Hallonbergen", "Hallunda", "Hammarbyhöjden", "Hjulsta", "Hornstull", "Husby", "Huvudsta", "Hägerstensåsen", "Hässelby gård", "Hässelby strand","Högdalen","Hökarängen","Hötorget","Islandstorget","Johannelund","Karlaplan","Kista","Kristineberg","Kungsträdgården","Kärrtorp","Liljeholmen","Mariatorget","Masmo","Medborgarplatsen","Midsommarkransen","Mälarhöjden","Mörby centrum","Norsborg","Näckrosen","Odenplan","Rinkeby","Rissne","Ropsten","Råcksta","Rådhuset","Rådmansgatan","Rågsved","S:t Eriksplan","Sandsborg","Skanstull","Skarpnäck","Skogskyrkogården","Skärholmen","Skärmarbrink","Slussen","Sockenplan","Solna centrum","Stadion","Stadshagen","Stora mossen","Stureby","Sundbybergs centrum","Svedmyra","Sätra","T-Centralen","Tallkrogen","Tekniska högskolan","Telefonplan","Tensta","Thorildsplan","Universitetet","Vreten","Vårberg","Vårby gård","Vällingby","Västertorp","Västra skogen","Zinkensdamm","Åkeshov","Ängbyplan","Örnsberg","Östermalmstorg", "test1", "test"]
-
+    
     var toStationName = ""
     var fromStationName = ""
     var toStationRef = ""
@@ -29,12 +29,14 @@ class StartViewController: UIViewController {
     var departureTime = NSDate()
     var stationExists = false
     var i = 0
-
+    
+    var siteNameLookupDone = false
+    
     override func viewDidLoad() {
         
         //http://api.sl.se/api2/realtimedeparturesv4.json?key=01d6897342ce40b0a5ded8df798389e7&siteid=9192&timewindow=5
         
-      
+        
         AF.request("http://api.sl.se/api2/TravelplannerV3_1/trip.json?key=5cd013f40caa4e44b9c7efea27a974a0&originId=9192&destId=9112&searchForArrival=0").responseJSON { response in
             switch response.result {
             case .success(let json):
@@ -53,29 +55,34 @@ class StartViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "goToResult"  {
             if let destination = segue.destination as? TripViewController {
-                destination.fromSiteId = siteID
-                destination.toSiteId = siteID2
-                destination.departureTime = departureTime
+                print("david : \(siteID) \(siteID2) ")
+                destination.fromSiteId = self.siteID
+                destination.toSiteId = self.siteID2
+                // destination.departureTime = departureTime
                 
             }
         }
     }
+    
     @IBAction func searchTrip(_ sender: UIButton) {
         for station in stations{
             if fromStation.text?.lowercased() == station.lowercased() {
                 stationExists = true
             }
-            
+            DispatchQueue.main.async {
+                self.fromStation.text = ""
+                self.toStation.text = ""
+            }
         }
-       
+        
         if fromStation.text == "" || toStation.text == "" || stationExists == false {
-             let alert = UIAlertController(title: "Error", message: "Du måste fylle i stationsnamn som finns!", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error", message: "Du måste fylle i stationsnamn som finns!", preferredStyle: .alert)
             
-             alert.addAction(UIAlertAction(title: "Stäng", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Stäng", style: .default, handler: nil))
             
             self.present(alert, animated: true)
         }
@@ -94,7 +101,7 @@ class StartViewController: UIViewController {
             let session = URLSession.shared
             session.dataTask(with: trip) { (data, response, error) in
                 if let response = response {
-                    //print("Response \(response)")
+                    print("Response \(response)")
                 }
                 if let data = data {
                     do {
@@ -104,9 +111,17 @@ class StartViewController: UIViewController {
                         guard let responseData = json["ResponseData"] as? [[String : Any]] else { return }
                         
                         let test = responseData[0]
-                        guard let siteId = test["SiteId"] as? String else { return }
+                        self.siteID2 = test["SiteId"] as! String
                         
-                        print("start id 1 \(siteId)")
+                        print("david start id 1 \(self.siteID)")
+                        if self.siteNameLookupDone {
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "goToResult", sender: self)
+                            }
+                        } else {
+                            self.siteNameLookupDone = true
+                        }
+                        
                         
                     } catch {
                         print(error)
@@ -117,37 +132,45 @@ class StartViewController: UIViewController {
                 }
                 }.resume()
             
-        guard let trip2 = URL(string: "https://api.sl.se/api2/typeahead.json?key=ca35ed126dfa42c69bef67cb1c3ba5df&searchstring=\(toStationName)&stationsonly=true&maxresults=1") else { return }
-        
-        let session2 = URLSession.shared
-        session2.dataTask(with: trip2) { (data, response, error) in
-            if let response = response {
-               // print("Response \(response)")
-            }
-            if let data = data {
-                do {
-                    
-                    guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { return }
-                    
-                    guard let responseData = json["ResponseData"] as? [[String : Any]] else { return }
-                    let test = responseData[0]
-                    guard let siteId2 = test["SiteId"] as? String else { return }
-                    
-                    print("slut id 2 \(siteId2)")
-                    
-                } catch {
-                    print(error)
+            guard let trip2 = URL(string: "https://api.sl.se/api2/typeahead.json?key=ca35ed126dfa42c69bef67cb1c3ba5df&searchstring=\(toStationName)&stationsonly=true&maxresults=1") else { return }
+            
+            let session2 = URLSession.shared
+            session2.dataTask(with: trip2) { (data, response, error) in
+                if let response = response {
+                    // print("Response \(response)")
                 }
-                if let error = error {
-                    print(error.localizedDescription)
+                if let data = data {
+                    do {
+                        
+                        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { return }
+                        
+                        guard let responseData = json["ResponseData"] as? [[String : Any]] else { return }
+                        let test = responseData[0]
+                        self.siteID = test["SiteId"] as! String
+                        
+                        print("david slut id 2 \(self.siteID2)")
+                        
+                        if self.siteNameLookupDone {
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "goToResult", sender: self)
+                            }
+                        
+                        } else {
+                            self.siteNameLookupDone = true
+                        }
+                    } catch {
+                        print(error)
+                    }
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
                 }
-            }
-            }.resume()
-            performSegue(withIdentifier: "searchTrip", sender: self)
-            for station in stations {
-                if toStation.text!.lowercased() == station.lowercased() {
-                    stationExists = true
-                }
+                
+                }.resume()
+            for station in self.stations {
+                if self.toStation.text!.lowercased() == station.lowercased() {
+                    self.stationExists = true
+                }   // goToResult searchTrip
             }
         }
     }

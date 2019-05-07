@@ -11,15 +11,15 @@ import Alamofire
 
 class TripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tripTableView: UITableView!
-
-    var siteID = ""
-    var siteID2 = ""
-    var departureTime = NSDate()
     
     private var SLReseplanerare3_1 = "f8087c9e88564b9f9a53e74a2c37eae5"
     
-    var fromSiteId: Int = 0
-    var toSiteId: Int = 0
+    var fromSiteId: String?
+    var toSiteId: String?
+    
+    var fromDest: Int?
+    var toDest: Int?
+    
     var cityTransportationDeparture = [CityTransportationStop]() // Avgång
     var cityTransportationArrival = [CityTransportationStop]() // Ankomst
     
@@ -28,13 +28,15 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        fromDest = Int(fromSiteId ?? "-1")
+        toDest = Int(toSiteId ?? "-1")
         
         tripTableView.dataSource = self
         tripTableView.delegate = self
         //getArrivalDataFromSL()
         
         //slussen: 9192, Alvik: 9112, odenplan: 9117, solna: 9305
-        getDepartureDataFromSL(from: 9192, to: 9112)
+        getDepartureDataFromSL(from: toDest ?? 9192, to: fromDest ?? 9112)
         tripTableView.reloadData()
     }
     
