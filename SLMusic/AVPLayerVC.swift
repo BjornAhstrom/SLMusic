@@ -45,7 +45,7 @@ class AVPLayerVC: UIViewController {
     
    
     
-    func isPlaying() -> Bool {
+  /*  func isPlaying() -> Bool {
         return player?.rate != nil && player?.rate != 0
     }
 
@@ -81,6 +81,6 @@ class AVPLayerVC: UIViewController {
         
     }
     
-    
+    */
 }
 
