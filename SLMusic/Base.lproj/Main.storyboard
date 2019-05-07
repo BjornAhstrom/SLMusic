@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tTj-NK-Avd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4Dl-Kh-1x5">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -52,11 +52,14 @@
                                 <rect key="frame" x="293" y="188" width="82" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIk-nU-Mlx">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIk-nU-Mlx">
                                 <rect key="frame" x="67" y="588" width="241" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Sök resa " image="Skärmavbild 2019-04-29 kl. 15.45.30"/>
+                                <color key="backgroundColor" red="0.0" green="0.65020495649999999" blue="0.9164221883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Sök resa "/>
+                                <connections>
+                                    <action selector="searchTrip:" destination="4Dl-Kh-1x5" eventType="touchUpInside" id="eN5-tg-myg"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9Q-78-QBx">
                                 <rect key="frame" x="128" y="367" width="119" height="38"/>
@@ -373,11 +376,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Skärmavbild 2019-04-29 kl. 15.45.30" width="442" height="90"/>
-        <image name="musicnote2" width="385" height="720"/>
+        <image name="musicnote2" width="665" height="567"/>
         <image name="nusic note" width="456" height="599"/>
         <image name="rocket" width="30" height="30"/>
-        <image name="singleNote" width="563" height="559"/>
+        <image name="singleNote" width="385" height="720"/>
         <image name="sl-logo" width="315" height="278"/>
         <image name="soundcloud" width="434" height="433"/>
     </resources>

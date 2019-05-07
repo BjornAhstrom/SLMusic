@@ -11,6 +11,10 @@ import Alamofire
 
 class TripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tripTableView: UITableView!
+
+    var siteID = ""
+    var siteID2 = ""
+    var departureTime = NSDate()
     
     private var SLReseplanerare3_1 = "f8087c9e88564b9f9a53e74a2c37eae5"
     
@@ -21,6 +25,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var departure = [Departure]()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
