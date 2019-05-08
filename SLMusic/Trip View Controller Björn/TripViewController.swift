@@ -22,6 +22,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var departureTimeForChosenTripToPass: String?
     var arrivalStationForChosenTripToPass: String?
     var arrivalTimeForChosenTripToPass: String?
+    var tripChosenTimeLengthToPass: String?
     
     var fromDest: Int?
     var toDest: Int?
@@ -120,6 +121,38 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }.resume()
     }
     
+    func travelTimeLengt(startTime: String, endTime: String) -> Int {
+        var travelLenght: Int = 0
+        
+        let startTimeString = startTime
+        let startStationTime = startTimeString.split(separator: ":")
+        let startHoursString = startStationTime[0]
+        let startMinutesString = startStationTime[1]
+        let startSecondsString = startStationTime[2]
+        
+        let startHoursInt = Int(startHoursString) ?? 0
+        let startMinutesInt = Int(startMinutesString) ?? 0
+        let startSecondsInt = Int(startSecondsString) ?? 0
+        
+        let startStaionTime = (startHoursInt * 60) + (startMinutesInt) + (startSecondsInt / 60)
+        
+        let endTimeString = endTime
+        let endStationTime = endTimeString.split(separator: ":")
+        let endHoursString = endStationTime[0]
+        let endMinutesString = endStationTime[1]
+        let endSecondsString = endStationTime[2]
+        
+        let endHoursInt = Int(endHoursString) ?? 0
+        let endMinutesInt = Int(endMinutesString) ?? 0
+        let endSecondsInt = Int(endSecondsString) ?? 0
+        
+        let endStaionTime = (endHoursInt * 60) + (endMinutesInt) + (endSecondsInt / 60)
+        
+        travelLenght = endStaionTime - startStaionTime
+        
+        return travelLenght
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -146,34 +179,9 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell?.arrivalStationLabel.text = "Till \(arrName ?? "No destination")"
         cell?.arrivalTimeLabel.text = "\(dep.end.time ?? "00:00")"
         
-        let endTimeString = dep.end.time
-        let endStationTime = endTimeString?.split(separator: ":")
-        let endHoursString = endStationTime?[0] ?? "00"
-        let endMinutesString = endStationTime?[1] ?? "00"
-        let endSecondsString = endStationTime?[2] ?? "00"
+        let travelLenght = travelTimeLengt(startTime: dep.start.time ?? "00", endTime: dep.end.time ?? "00")
         
-        
-        let endHoursInt = Int(endHoursString) ?? 0
-        let endMinutesInt = Int(endMinutesString) ?? 0
-        let endSecondsInt = Int(endSecondsString) ?? 0
-        
-        let endStaionTime = (endHoursInt * 60) + (endMinutesInt) + (endSecondsInt / 60)
-        
-        let startTimeString = dep.start.time
-        let startStationTime = startTimeString?.split(separator: ":")
-        let startHoursString = startStationTime?[0] ?? "00"
-        let startMinutesString = startStationTime?[1] ?? "00"
-        let startSecondsString = startStationTime?[2] ?? "00"
-        
-        let startHoursInt = Int(startHoursString) ?? 0
-        let startMinutesInt = Int(startMinutesString) ?? 0
-        let startSecondsInt = Int(startSecondsString) ?? 0
-        
-        let startStaionTime = (startHoursInt * 60) + (startMinutesInt) + (startSecondsInt / 60)
-        
-        let travelLenght = endStaionTime - startStaionTime
-        
-        cell?.tripLenghtLabel.text = "Restid \(travelLenght) min"
+        cell?.tripLenghtLabel.text = "\(travelLenght)"
         return cell ?? cell!
     }
     
@@ -189,6 +197,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         departureTimeForChosenTripToPass = tripCell.departureTimeLabel.text
         arrivalStationForChosenTripToPass = tripCell.arrivalStationLabel.text
         arrivalTimeForChosenTripToPass = tripCell.arrivalTimeLabel.text
+        tripChosenTimeLengthToPass = tripCell.tripLenghtLabel.text
         
         performSegue(withIdentifier: goToSelectedTripId, sender: self)
     }
@@ -196,14 +205,18 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == goToSelectedTripId {
             if let destination = segue.destination as? TripChosenViewController {
-                guard let depName = departureStationForChosenTripToPass else {
-                    print("Something went wrong, no departure name")
-                    return }
                 
+                guard let arrName = arrivalStationForChosenTripToPass else { return }
+                guard let arrTime = arrivalTimeForChosenTripToPass else { return }
+                guard let depName = departureStationForChosenTripToPass else { return }
+                guard let depTime = departureTimeForChosenTripToPass else { return }
+                guard let travelLength = tripChosenTimeLengthToPass else { return }
+                
+                destination.arrivalStationForChosenTrip = arrName
+                destination.arrivalTimeForChosenTrip = arrTime
                 destination.departureStationForChosenTrip = depName
-                //                destination.departureTimeForChosenTripLabel
-                //                destination.arrivalStationForChosenTripLabel
-                //                destination.arrivalTimeForChosenTripLabel
+                destination.departureTimeForChosenTrip = depTime
+                destination.tripChosenTimeLength = travelLength
             }
         }
     }
