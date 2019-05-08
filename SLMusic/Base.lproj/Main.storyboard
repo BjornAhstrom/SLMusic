@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4Dl-Kh-1x5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eTx-UX-dxJ">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -377,7 +377,7 @@
         <!--LayerVC-->
         <scene sceneID="6bx-xf-fjN">
             <objects>
-                <viewController id="ep1-6w-Ddc" customClass="AVPLayerVC" customModule="player" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ep1-6w-Ddc" customClass="AVPLayerVC" customModule="SLMusic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UfF-1Q-htO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -474,21 +474,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnP-Hh-JE2" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1064.8" y="136.69950738916256"/>
+            <point key="canvasLocation" x="5492" y="137"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Skärmavbild 2019-04-29 kl. 15.45.30" width="442" height="90"/>
-        <image name="musicnote2" width="385" height="720"/>
-        <image name="next" width="16" height="16"/>
+        <image name="musicnote2" width="665" height="567"/>
+        <image name="next" width="212" height="210.5"/>
         <image name="nusic note" width="456" height="599"/>
+        <image name="playBtn" width="210.5" height="212"/>
+        <image name="prev" width="211" height="213"/>
         <image name="rocket" width="30" height="30"/>
-
-        <image name="playBtn" width="16" height="16"/>
-        <image name="prev" width="16" height="16"/>
-
-        <image name="singleNote" width="563" height="559"/>
-
+        <image name="singleNote" width="385" height="720"/>
         <image name="sl-logo" width="315" height="278"/>
         <image name="soundcloud" width="434" height="433"/>
     </resources>

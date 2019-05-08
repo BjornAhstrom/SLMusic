@@ -45,42 +45,42 @@ class AVPLayerVC: UIViewController {
     
    
     
-    func isPlaying() -> Bool {
-        return player?.rate != nil && player?.rate != 0
-    }
-
-    @IBAction func prevBtnClicked(_ sender: Any) {
-    }
-    
-    
-    @IBAction func playBtnClicked(_ sender: Any) {
-        
-//        if player.isPlaying == false {
-//            pl.play()
-//        }
+//   func isPlaying() -> Bool {
+//        return player?.rate != nil && player?.rate != 0
+//    }
 //
-//        if audioPlayer.isPlaying {
-//            audioPlayer.pause()
+//    @IBAction func prevBtnClicked(_ sender: Any) {
+//    }
+//    
+//    
+//    @IBAction func playBtnClicked(_ sender: Any) {
+//        
+////        if player.isPlaying == false {
+////            pl.play()
+////        }
+////
+////        if audioPlayer.isPlaying {
+////            audioPlayer.pause()
+////        }
+//        
+//        if isPlaying {
+//            player!.pause()
+//        } else {
+//            player!.play()
 //        }
-        
-        if isPlaying {
-            player!.pause()
-        } else {
-            player!.play()
-        }
-        
-    }
-    
-    
-    @IBAction func nextBtnClicked(_ sender: Any) {
-        
-        
-    }
-    
-    @IBAction func musikSliderAction(_ sender: Any) {
-        
-    }
-    
-    
+//        
+//    }
+//    
+//    
+//    @IBAction func nextBtnClicked(_ sender: Any) {
+//        
+//        
+//    }
+//    
+//    @IBAction func musikSliderAction(_ sender: Any) {
+//        
+//    }
+//    
+//    
 }
 
