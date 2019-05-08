@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class TripChosenViewController: UIViewController {
 
@@ -19,6 +20,14 @@ class TripChosenViewController: UIViewController {
     @IBOutlet weak var tripChosenTimeLabel: UILabel!
     
     @IBOutlet weak var musicGenrePickerWheel: UIPickerView!
+    
+    //VARIABLES RECEIVED BY BJORN
+    var departureStation: String?
+    var departureTime: String?
+    var arrivalStation: String?
+    var arrivalTime: String?
+    var tripLength: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
