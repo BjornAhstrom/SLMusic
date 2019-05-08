@@ -16,6 +16,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private let tripChosenViewControllerId = "tripChosenViewController"
     private let goToSelectedTripId = "goToSelectedTrip"
     
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var fromSiteId: String?
     var toSiteId: String?
     var departureStationForChosenTripToPass: String?
@@ -27,13 +28,11 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var fromDest: Int?
     var toDest: Int?
     
-//    var cityTransportationDeparture = [CityTransportationStop]()
-//    var cityTransportationArrival = [CityTransportationStop]()
-    
     var departure = [Departure]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        stopActivityIndicator()
         // Odenplan: 9117, Solna: 9305
         fromDest = Int(fromSiteId ?? "9117")
         toDest = Int(toSiteId ?? "9305")
@@ -44,6 +43,20 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //Slussen: 9192, Alvik: 9112
         getDepartureDataFromSL(from: toDest ?? 9192, to: fromDest ?? 9112)
         tripTableView.reloadData()
+    }
+    
+    func startActivityIndicator() {
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+    }
+    
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
     }
     
     //    func getDepartureDataFromJourney(refId: String){
@@ -74,6 +87,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //    }
     
     func getDepartureDataFromSL(from: Int, to: Int) {
+        startActivityIndicator()
         guard let trip =                                                                                                     URL(string:"https://api.sl.se/api2/TravelplannerV3_1/trip.json?key=\(SLReseplanerare3_1)&lang=se&originExtId=\(from)&destExtId=\(to)&maxChange=3&lines=!19") else { return }
         
         let session = URLSession.shared
@@ -109,6 +123,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
                             }
                         }
                     }
+                    
                 } catch {
                     self.alertMessage(titel: "Something went wrong", message: "\(error.localizedDescription )")
                     print(error)
@@ -117,7 +132,9 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 if let error = error {
                     print(error.localizedDescription)
                 }
+                
             }
+            
             }.resume()
     }
     
@@ -163,7 +180,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as? TripCell
-        
+        self.stopActivityIndicator()
         let dep = departure[indexPath.row]
         
         let dateFormatter: DateFormatter = DateFormatter()
