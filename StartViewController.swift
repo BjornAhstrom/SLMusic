@@ -10,6 +10,12 @@
 
 import UIKit
 import Alamofire
+import Foundation
+
+struct station: Decodable {
+    let name: String
+    let ID: Int
+}
 
 class StartViewController: UIViewController {
     
@@ -29,20 +35,33 @@ class StartViewController: UIViewController {
     var departureTime = NSDate()
     var stationExists = false
     var i = 0
+    
+    
+    
+    struct station: Decodable {
+        let id: Int
+        let name: String
+    }
 
     override func viewDidLoad() {
         
         //http://api.sl.se/api2/realtimedeparturesv4.json?key=01d6897342ce40b0a5ded8df798389e7&siteid=9192&timewindow=5
         
-      
-        AF.request("http://api.sl.se/api2/TravelplannerV3_1/trip.json?key=5cd013f40caa4e44b9c7efea27a974a0&originId=9192&destId=9112&searchForArrival=0").responseJSON { response in
+        print("------------------RESULTS---------------")
+        AF.request("http://api.sl.se/api2/typeahead.json?key=ca35ed126dfa42c69bef67cb1c3ba5df&searchstring=slussen&stationsonly=true").responseJSON { response in
             switch response.result {
-            case .success(let json):
-                print(json)
+            case .success(let data):
+                print(data)
+                
             case .failure(let error):
                 print(error)
             }
-        }
+          
+           
+            
+ 
+            
+        
         
         
         
@@ -51,14 +70,14 @@ class StartViewController: UIViewController {
         
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        }   // Do any additional setup after loading the view.
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "goToResult"  {
             if let destination = segue.destination as? TripViewController {
-                destination.fromSiteId = siteID
-                destination.toSiteId = siteID2
+                //destination.fromSiteId = siteID
+                //destination.toSiteId = siteID2
                 destination.departureTime = departureTime
                 
             }
@@ -94,7 +113,7 @@ class StartViewController: UIViewController {
             let session = URLSession.shared
             session.dataTask(with: trip) { (data, response, error) in
                 if let response = response {
-                    //print("Response \(response)")
+                   //print("Response \(response)")
                 }
                 if let data = data {
                     do {
@@ -143,12 +162,12 @@ class StartViewController: UIViewController {
                 }
             }
             }.resume()
-            performSegue(withIdentifier: "searchTrip", sender: self)
+            /*performSegue(withIdentifier: "searchTrip", sender: self)
             for station in stations {
                 if toStation.text!.lowercased() == station.lowercased() {
                     stationExists = true
                 }
-            }
+            }*/
         }
     }
 }
