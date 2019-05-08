@@ -20,9 +20,19 @@ class TripChosenViewController: UIViewController {
     
     @IBOutlet weak var musicGenrePickerWheel: UIPickerView!
     
+    
+    var departureStationForChosenTrip: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("\(departureStationForChosenTrip ?? "No departure name")")
+        guard let depName = departureStationForChosenTrip else {
+            print("Something went wrong")
+            return
+            
+        }
+        
+        departureStationForChosenTripLabel.text = depName
     }
     
     @IBAction func startChosenTripButton(_ sender: UIButton) {

@@ -73,6 +73,7 @@ class StartViewController: UIViewController {
             if fromStation.text?.lowercased() == station.lowercased() {
                 stationExists = true
             }
+        
             DispatchQueue.main.async {
                 self.fromStation.text = ""
                 self.toStation.text = ""
@@ -167,10 +168,11 @@ class StartViewController: UIViewController {
                 }
                 
                 }.resume()
+            
             for station in self.stations {
                 if self.toStation.text!.lowercased() == station.lowercased() {
                     self.stationExists = true
-                }   // goToResult searchTrip
+                }   // goToResult, searchTrip
             }
         }
     }
