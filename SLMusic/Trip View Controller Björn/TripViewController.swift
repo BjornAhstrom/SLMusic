@@ -147,23 +147,17 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell?.arrivalTimeLabel.text = "\(dep.end.time ?? "00:00")"
         
         let endTimeString = dep.end.time
-        let endStationTime = endTimeString?.split(separator: ":") //split(timeString) { $0 == ":"}
+        let endStationTime = endTimeString?.split(separator: ":")
         let endHoursString = endStationTime?[0] ?? "00"
         let endMinutesString = endStationTime?[1] ?? "00"
         let endSecondsString = endStationTime?[2] ?? "00"
         
-        print("!!!!!!!!!! Station name \(arrName ?? "No station")")
-        print("!!!!!!!!!! hours \(endHoursString)")
-        print("!!!!!!!!!! minutes \(endMinutesString)")
-        print("!!!!!!!!!! seconds \(endSecondsString)")
         
         let endHoursInt = Int(endHoursString) ?? 0
         let endMinutesInt = Int(endMinutesString) ?? 0
         let endSecondsInt = Int(endSecondsString) ?? 0
         
-        let endStaionTime = (endHoursInt * 60) + (endMinutesInt) + (endSecondsInt * 60)
-        print("!!!!!!!! End station Minutes \(endStaionTime)")
-        
+        let endStaionTime = (endHoursInt * 60) + (endMinutesInt) + (endSecondsInt / 60)
         
         let startTimeString = dep.start.time
         let startStationTime = startTimeString?.split(separator: ":")
@@ -171,35 +165,15 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let startMinutesString = startStationTime?[1] ?? "00"
         let startSecondsString = startStationTime?[2] ?? "00"
         
-        print("!!!!!!!!!! Station name \(arrName ?? "No station")")
-        print("!!!!!!!!!! hours \(startHoursString)")
-        print("!!!!!!!!!! minutes \(startMinutesString)")
-        print("!!!!!!!!!! seconds \(startSecondsString)")
-        
         let startHoursInt = Int(startHoursString) ?? 0
         let startMinutesInt = Int(startMinutesString) ?? 0
         let startSecondsInt = Int(startSecondsString) ?? 0
         
-        let startStaionTime = (startHoursInt * 60) + (startMinutesInt) + (startSecondsInt * 60)
-        print("!!!!!!!!  Start station Minutes \(startStaionTime)")
+        let startStaionTime = (startHoursInt * 60) + (startMinutesInt) + (startSecondsInt / 60)
         
         let travelLenght = endStaionTime - startStaionTime
         
-        print("!!!!!!!!!! \(depName ?? "No station") to \(arrName ?? "No station") Travel length \(travelLenght)")
-        
         cell?.tripLenghtLabel.text = "Restid \(travelLenght) min"
-//        let depString = "\(dep.start.time ?? "00:00:00")"
-//        let dString = depString
-//        let newDepString = dString.replacingOccurrences(of: ":", with: "", options: .literal, range: nil)
-//        let myInt1 = Int(newDepString) ?? 0
-//
-//        let arrString = "\(dep.end.time ?? "00:00:00")"
-//        let aString = arrString
-//        let newArrString = aString.replacingOccurrences(of: ":", with: "", options: .literal, range: nil)
-//        let myInt2 = Int(newArrString) ?? 0
-//
-//        let tripLenght = (myInt2 - myInt1) / 100
-//        cell?.tripLenghtLabel.text = "Restid, \(tripLenght) min"
         return cell ?? cell!
     }
     
