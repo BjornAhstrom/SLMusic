@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jkM-3V-7Ly">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FSQ-WS-UGK">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -91,34 +91,32 @@
             <point key="canvasLocation" x="111" y="134"/>
         </scene>
         <!--Login To SpotifyVC-->
-        <scene sceneID="IMj-qP-rZo">
+        <scene sceneID="JaJ-I4-M8M">
             <objects>
-                <viewController id="jkM-3V-7Ly" customClass="LoginToSpotifyVC" customModule="SLMusic" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fLh-Pz-jIF">
+                <tableViewController id="FSQ-WS-UGK" customClass="LoginToSpotifyVC" customModule="SLMusic" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q2x-my-CHo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eG0-da-HEe">
-                                <rect key="frame" x="70" y="637" width="235" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="login-button"/>
-                                <connections>
-                                    <action selector="loginBtnAction:" destination="jkM-3V-7Ly" eventType="touchUpInside" id="1mN-QT-eiY"/>
-                                    <action selector="loginBtnClicked:" destination="jkM-3V-7Ly" eventType="touchUpInside" id="Isl-PE-lqe"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="CpZ-Xq-HKS"/>
-                    </view>
-                    <connections>
-                        <outlet property="loginBtn" destination="eG0-da-HEe" id="btD-ue-fLS"/>
-                        <outlet property="loginSpotifyBtn" destination="eG0-da-HEe" id="VE4-aT-jgb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pZs-Ja-zpC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="sCV-J4-7Zt">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sCV-J4-7Zt" id="Cce-PB-DQ9">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FSQ-WS-UGK" id="IDv-D9-bIL"/>
+                            <outlet property="delegate" destination="FSQ-WS-UGK" id="Q8E-mq-XzF"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BbX-1G-jS8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="986.39999999999998" y="133.74384236453201"/>
+            <point key="canvasLocation" x="935" y="133"/>
         </scene>
         <!--LayerVC-->
         <scene sceneID="6bx-xf-fjN">
@@ -268,7 +266,6 @@
     </scenes>
     <resources>
         <image name="Skärmavbild 2019-04-29 kl. 15.45.30" width="442" height="90"/>
-        <image name="login-button" width="244" height="44"/>
         <image name="musicnote2" width="385" height="720"/>
         <image name="next" width="212" height="210.5"/>
         <image name="nusic note" width="456" height="599"/>
