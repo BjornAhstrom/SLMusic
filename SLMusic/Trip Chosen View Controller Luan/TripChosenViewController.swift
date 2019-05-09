@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class TripChosenViewController: UIViewController {
 
@@ -21,16 +20,28 @@ class TripChosenViewController: UIViewController {
     
     @IBOutlet weak var musicGenrePickerWheel: UIPickerView!
     
-    //VARIABLES RECEIVED BY BJORN
-    var departureStation: String?
-    var departureTime: String?
-    var arrivalStation: String?
-    var arrivalTime: String?
-    var tripLength: String?
+    var arrivalStationForChosenTrip: String?
+    var arrivalTimeForChosenTrip: String?
+    var departureStationForChosenTrip: String?
+    var departureTimeForChosenTrip: String?
+    var tripChosenTimeLength: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Du får ändra om allt som du vill ha det.  Mvh Björn :)
+        
+        guard let arrNam = arrivalStationForChosenTrip else { return }
+        guard let arrTime = arrivalTimeForChosenTrip else { return }
+        guard let depName = departureStationForChosenTrip else { return }
+        guard let depTime = departureTimeForChosenTrip else { return }
+        guard let travelTimeLength = tripChosenTimeLength else { return }
+        
+        arrivalStationForChosenTripLabel.text = arrNam
+        arrivalTimeForChosenTripLabel.text = arrTime
+        departureStationForChosenTripLabel.text = depName
+        departureTimeForChosenTripLabel.text = depTime
+        tripChosenTimeLabel.text = travelTimeLength
     }
     
     @IBAction func startChosenTripButton(_ sender: UIButton) {
