@@ -11,11 +11,16 @@ import UIKit
 
 class TripCell: UITableViewCell {
     @IBOutlet weak var currentTimeLabel: UILabel!
+    @IBOutlet weak var departureLabel: UILabel!
+    @IBOutlet weak var arrivalLabel: UILabel!
     @IBOutlet weak var departureTimeLabel: UILabel!
     @IBOutlet weak var departureStationLabel: UILabel!
+    @IBOutlet weak var travelTimeLabel: UILabel!
     @IBOutlet weak var tripLenghtLabel: UILabel!
+    @IBOutlet weak var minLabel: UILabel!
     @IBOutlet weak var arrivalTimeLabel: UILabel!
     @IBOutlet weak var arrivalStationLabel: UILabel!
+    
     
     func setLabelsTo(currentTimeLabel: String, departureTimeLabel: String, departureStationLabel: String, tripLenghtLabel: String, arrivalTimeLabel: String, arrivalStationLabel: String) {
         
