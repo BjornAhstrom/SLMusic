@@ -24,6 +24,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var arrivalStationForChosenTripToPass: String?
     var arrivalTimeForChosenTripToPass: String?
     var tripChosenTimeLengthToPass: String?
+    var fontOnTextInLabels: String = "Arial"
     
     var fromDest: Int?
     var toDest: Int?
@@ -59,32 +60,27 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         UIApplication.shared.endIgnoringInteractionEvents()
     }
     
-    //    func getDepartureDataFromJourney(refId: String){
-    //        let journey = "https://api.sl.se/api2/TravelplannerV3_1/journeydetail.json?key=\(SLReseplanerare3_1)&id=\(refId)"
-    //
-    //        guard let url = URL(string: journey) else { return }
-    //
-    //        URLSession.shared.dataTask(with: url) { (data, response, error) in
-    //            guard let data = data else { return }
-    //            do {
-    //                guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { return }
-    //
-    //                guard let stops = json["Stops"] as? [String : Any] else { return }
-    //                guard let stop = stops["Stop"] as? [[String : Any]] else { return }
-    //
-    //                for s in stop {
-    //                    let cityTransportation = CityTransportationStop(json: s)
-    //                    self.cityTransportationArrival.append(cityTransportation)
-    //
-    //                    DispatchQueue.main.async {
-    //                        self.tripTableView.reloadData()
-    //                    }
-    //                }
-    //            } catch let jsonError {
-    //                print("Error serializing json:", jsonError)
-    //            }
-    //            }.resume()
-    //    }
+//        func getDepartureDataFromJourney(refId: String){
+//            let journey = "https://api.sl.se/api2/TravelplannerV3_1/journeydetail.json?key=\(SLReseplanerare3_1)&id=\(refId)"
+//
+//            guard let url = URL(string: journey) else { return }
+//
+//            URLSession.shared.dataTask(with: url) { (data, response, error) in
+//                guard let data = data else { return }
+//                do {
+//                    guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { return }
+//
+//                    guard let names = json["Names"] as? [String : Any] else { return }
+//                    guard let name = names["Name"] as? [[String : Any]] else { return }
+//
+//
+//                    for n in name {
+//                    }
+//                } catch let jsonError {
+//                    print("Error serializing json:", jsonError)
+//                }
+//                }.resume()
+//        }
     
     func getDepartureDataFromSL(from: Int, to: Int) {
         startActivityIndicator()
@@ -116,8 +112,8 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
                             guard let journeyDetailRef = leg["JourneyDetailRef"] as? [String : Any] else { return }
                             guard let refId = journeyDetailRef["ref"] as? String else { return }
                             let aString = refId
-                            let newString = aString.replacingOccurrences(of: "|", with: "%7C", options: .literal, range: nil)
-                            //self.getDepartureDataFromJourney(refId: newString)
+//                            let newString = aString.replacingOccurrences(of: "|", with: "%7C", options: .literal, range: nil)
+//                            self.getDepartureDataFromJourney(refId: newString)
                             DispatchQueue.main.async {
                                 self.tripTableView.reloadData()
                             }
@@ -138,7 +134,8 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }.resume()
     }
     
-    func travelTimeLengt(startTime: String, endTime: String) -> Int {
+    // Convert time from string to an int, and then convert hours to minutes
+    func travelTimeLengtConverter(startTime: String, endTime: String) -> Int {
         var travelLenght: Int = 0
         
         let startTimeString = startTime
@@ -170,6 +167,15 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return travelLenght
     }
     
+    func convertTimeString(time: String) -> String {
+        var newTime: String
+        let convertTime = time.index(time.startIndex, offsetBy: 5)
+        let convertedTime = time[..<convertTime]
+        newTime = String(convertedTime)
+        
+        return newTime
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -177,6 +183,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return departure.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as? TripCell
@@ -190,15 +197,46 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let depName = dep.start.name
         let arrName = dep.end.name
+        
+        cell?.departureLabel.font = UIFont(name: fontOnTextInLabels, size: 20)
+        cell?.departureLabel.textColor = UIColor(named: "SLBlue")
+        
+        cell?.arrivalLabel.font = UIFont(name: fontOnTextInLabels, size: 20)
+        cell?.arrivalLabel.textColor = UIColor(named: "SLBlue")
+        
+        cell?.currentTimeLabel.font = UIFont(name: fontOnTextInLabels, size: 20)
+        cell?.currentTimeLabel.textColor = UIColor(named: "SLBlue")
         cell?.currentTimeLabel.text = dateString
-        cell?.departureStationLabel.text = "Från \(depName ?? "No departure")"
-        cell?.departureTimeLabel.text = "\(dep.start.time ?? "00:00")"
-        cell?.arrivalStationLabel.text = "Till \(arrName ?? "No destination")"
-        cell?.arrivalTimeLabel.text = "\(dep.end.time ?? "00:00")"
         
-        let travelLenght = travelTimeLengt(startTime: dep.start.time ?? "00", endTime: dep.end.time ?? "00")
+        cell?.departureStationLabel.text = "\(depName ?? "No departure")"
+        cell?.departureStationLabel.font = UIFont(name: fontOnTextInLabels, size: 14)
+        //cell?.departureStationLabel.textColor = UIColor(named: "SLBlue")
         
+        let departureTime = convertTimeString(time: dep.start.time ?? "00:00")
+        cell?.departureTimeLabel.text = "\(departureTime)"
+        cell?.departureTimeLabel.font = UIFont(name: fontOnTextInLabels, size: 20)
+        //cell?.departureTimeLabel.textColor = UIColor(named: "SLBlue")
+        
+        cell?.arrivalStationLabel.text = "\(arrName ?? "No destination")"
+        cell?.arrivalStationLabel.font = UIFont(name: fontOnTextInLabels, size: 14)
+        //cell?.arrivalStationLabel.textColor = UIColor(named: "SLBlue")
+        
+        let arrivalTime = convertTimeString(time: dep.end.time ?? "00:00")
+        cell?.arrivalTimeLabel.text = "\(arrivalTime)"
+        cell?.arrivalTimeLabel.font = UIFont(name: fontOnTextInLabels, size: 20)
+        //cell?.arrivalTimeLabel.textColor = UIColor(named: "SLBlue")
+        
+        cell?.travelTimeLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
+        //cell?.travelTimeLabel.textColor = UIColor(named: "SLBlue")
+        
+        let travelLenght = travelTimeLengtConverter(startTime: dep.start.time ?? "00", endTime: dep.end.time ?? "00")
         cell?.tripLenghtLabel.text = "\(travelLenght)"
+        cell?.tripLenghtLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
+        //cell?.tripLenghtLabel.textColor = UIColor(named: "SLBlue")
+        
+        cell?.minLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
+        //cell?.minLabel.textColor = UIColor(named: "SLBlue")
+        
         return cell ?? cell!
     }
     
