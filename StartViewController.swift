@@ -110,7 +110,7 @@ class StartViewController: UIViewController {
                         
                         for respons in responseData {
                             guard let id = respons["SiteId"] as? String else { return }
-                            self.siteID = id
+                            self.siteID2 = id
                         }
                         
 //                        let test = responseData[0]
@@ -151,7 +151,7 @@ class StartViewController: UIViewController {
                         
                         for respons in responseData {
                             guard let id = respons["SiteId"] as? String else { return }
-                            self.siteID2 = id
+                            self.siteID = id
                             print("david slut id 2 \(self.siteID2)")
                         }
 //                        let test = responseData[0]
