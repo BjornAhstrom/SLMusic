@@ -21,7 +21,6 @@ class AVPLayerVC: UIViewController {
     @IBOutlet weak var musikTimerFinishLbl: UILabel!
     @IBOutlet weak var MusikTimerMainLbl: UILabel!
     
-    
   
     
   
