@@ -29,7 +29,6 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var fromDest: Int?
     var toDest: Int?
     
-    
     var departure = [Departure]()
     
     override func viewDidLoad() {
