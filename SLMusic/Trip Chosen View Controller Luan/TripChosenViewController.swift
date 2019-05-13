@@ -8,16 +8,14 @@
 
 import UIKit
 
-class TripChosenViewController: UIViewController {
+class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+  
 
     @IBOutlet weak var departureTimeForChosenTripLabel: UILabel!
     @IBOutlet weak var departureStationForChosenTripLabel: UILabel!
-    
     @IBOutlet weak var arrivalTimeForChosenTripLabel: UILabel!
     @IBOutlet weak var arrivalStationForChosenTripLabel: UILabel!
-    
     @IBOutlet weak var tripChosenTimeLabel: UILabel!
-    
     @IBOutlet weak var musicGenrePickerWheel: UIPickerView!
     
     var arrivalStationForChosenTrip: String?
@@ -25,6 +23,8 @@ class TripChosenViewController: UIViewController {
     var departureStationForChosenTrip: String?
     var departureTimeForChosenTrip: String?
     var tripChosenTimeLength: String?
+    
+    let genres = ["Pop", "Rock", "Rap", "Country", "Latin"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,9 +42,24 @@ class TripChosenViewController: UIViewController {
         departureStationForChosenTripLabel.text = depName
         departureTimeForChosenTripLabel.text = depTime
         tripChosenTimeLabel.text = travelTimeLength
+        musicGenrePickerWheel.dataSource = self
+        musicGenrePickerWheel.delegate = self
     }
     
     @IBAction func startChosenTripButton(_ sender: UIButton) {
+        performSegue(withIdentifier: "goToMusic", sender: self)
     }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return genres.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return genres[row]
+    }
+    
     
 }
