@@ -177,7 +177,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let depName = dep.start.name
         let arrName = dep.end.name
         let currTime = currentTime()
-         §
+        
         cell?.departureLabel.font = UIFont(name: fontOnTextInLabels, size: 20)
         cell?.departureLabel.textColor = UIColor(named: "SLBlue")
         
