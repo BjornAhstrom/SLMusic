@@ -34,6 +34,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         stopActivityIndicator()
+        
         // Odenplan: 9117, Solna: 9305
         fromDest = Int(fromSiteId ?? "9117")
         toDest = Int(toSiteId ?? "9305")
@@ -42,10 +43,11 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tripTableView.delegate = self
         
         //Slussen: 9192, Alvik: 9112
-        getDepartureDataFromSL(from: toDest ?? 9192, to: fromDest ?? 9112)
+        getDepartureAndArrivalDataFromSL(from: toDest ?? 9192, to: fromDest ?? 9112)
         tripTableView.reloadData()
     }
     
+    // MARK: Start activity indicator
     func startActivityIndicator() {
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
@@ -55,35 +57,16 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         UIApplication.shared.beginIgnoringInteractionEvents()
     }
     
+    // MARK: Stop activity indicator
     func stopActivityIndicator() {
         activityIndicator.stopAnimating()
         UIApplication.shared.endIgnoringInteractionEvents()
     }
     
-//        func getDepartureDataFromJourney(refId: String){
-//            let journey = "https://api.sl.se/api2/TravelplannerV3_1/journeydetail.json?key=\(SLReseplanerare3_1)&id=\(refId)"
-//
-//            guard let url = URL(string: journey) else { return }
-//
-//            URLSession.shared.dataTask(with: url) { (data, response, error) in
-//                guard let data = data else { return }
-//                do {
-//                    guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { return }
-//
-//                    guard let names = json["Names"] as? [String : Any] else { return }
-//                    guard let name = names["Name"] as? [[String : Any]] else { return }
-//
-//
-//                    for n in name {
-//                    }
-//                } catch let jsonError {
-//                    print("Error serializing json:", jsonError)
-//                }
-//                }.resume()
-//        }
-    
-    func getDepartureDataFromSL(from: Int, to: Int) {
+    // MARK: Get departure and arrival data (siteId) from StartViewController
+    func getDepartureAndArrivalDataFromSL(from: Int, to: Int) {
         startActivityIndicator()
+        
         guard let trip =                                                                                                     URL(string:"https://api.sl.se/api2/TravelplannerV3_1/trip.json?key=\(SLReseplanerare3_1)&lang=se&originExtId=\(from)&destExtId=\(to)&maxChange=3&lines=!19") else { return }
         
         let session = URLSession.shared
@@ -106,14 +89,9 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
                             guard let origin = leg["Origin"] as? [String : Any] else { return }
                             guard let dest = leg["Destination"] as? [String : Any] else { return}
                             
-                            let de = Departure(start: EndPoint.init(json: origin), end: EndPoint.init(json: dest))
-                            self.departure.append(de)
+                            let dep = Departure(start: EndPoint.init(json: origin), end: EndPoint.init(json: dest))
+                            self.departure.append(dep)
                             
-                            guard let journeyDetailRef = leg["JourneyDetailRef"] as? [String : Any] else { return }
-                            guard let refId = journeyDetailRef["ref"] as? String else { return }
-                            let aString = refId
-//                            let newString = aString.replacingOccurrences(of: "|", with: "%7C", options: .literal, range: nil)
-//                            self.getDepartureDataFromJourney(refId: newString)
                             DispatchQueue.main.async {
                                 self.tripTableView.reloadData()
                             }
@@ -124,17 +102,14 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.alertMessage(titel: "Something went wrong", message: "\(error.localizedDescription )")
                     print(error)
                 }
-                
                 if let error = error {
                     print(error.localizedDescription)
                 }
-                
             }
-            
             }.resume()
     }
     
-    // Convert time from string to an int, and then convert hours to minutes
+    // MARK: Convert time from string to an int, and then convert hours to minutes
     func travelTimeLengtConverter(startTime: String, endTime: String) -> Int {
         var travelLenght: Int = 0
         
@@ -167,7 +142,8 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return travelLenght
     }
     
-    func convertTimeString(time: String) -> String {
+    // MARK: Remove seconds and keep hours and minutes from the time (12:00:00 to 12:00)
+    func convertString(time: String) -> String {
         var newTime: String
         let convertTime = time.index(time.startIndex, offsetBy: 5)
         let convertedTime = time[..<convertTime]
@@ -184,10 +160,11 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return departure.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as? TripCell
+        
         self.stopActivityIndicator()
+        
         let dep = departure[indexPath.row]
         
         let dateFormatter: DateFormatter = DateFormatter()
@@ -210,32 +187,25 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         cell?.departureStationLabel.text = "\(depName ?? "No departure")"
         cell?.departureStationLabel.font = UIFont(name: fontOnTextInLabels, size: 14)
-        //cell?.departureStationLabel.textColor = UIColor(named: "SLBlue")
         
-        let departureTime = convertTimeString(time: dep.start.time ?? "00:00")
+        let departureTime = convertString(time: dep.start.time ?? "00:00")
         cell?.departureTimeLabel.text = "\(departureTime)"
         cell?.departureTimeLabel.font = UIFont(name: fontOnTextInLabels, size: 20)
-        //cell?.departureTimeLabel.textColor = UIColor(named: "SLBlue")
         
         cell?.arrivalStationLabel.text = "\(arrName ?? "No destination")"
         cell?.arrivalStationLabel.font = UIFont(name: fontOnTextInLabels, size: 14)
-        //cell?.arrivalStationLabel.textColor = UIColor(named: "SLBlue")
         
-        let arrivalTime = convertTimeString(time: dep.end.time ?? "00:00")
+        let arrivalTime = convertString(time: dep.end.time ?? "00:00")
         cell?.arrivalTimeLabel.text = "\(arrivalTime)"
         cell?.arrivalTimeLabel.font = UIFont(name: fontOnTextInLabels, size: 20)
-        //cell?.arrivalTimeLabel.textColor = UIColor(named: "SLBlue")
         
         cell?.travelTimeLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
-        //cell?.travelTimeLabel.textColor = UIColor(named: "SLBlue")
         
         let travelLenght = travelTimeLengtConverter(startTime: dep.start.time ?? "00", endTime: dep.end.time ?? "00")
         cell?.tripLenghtLabel.text = "\(travelLenght)"
         cell?.tripLenghtLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
-        //cell?.tripLenghtLabel.textColor = UIColor(named: "SLBlue")
         
         cell?.minLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
-        //cell?.minLabel.textColor = UIColor(named: "SLBlue")
         
         return cell ?? cell!
     }
