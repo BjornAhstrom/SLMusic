@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
   
@@ -26,10 +27,11 @@ class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     let genres = ["Pop", "Rock", "Rap", "Country", "Latin"]
     
+    var selectedGenre: String?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Du får ändra om allt som du vill ha det.  Mvh Björn :)
         
         guard let arrNam = arrivalStationForChosenTrip else { return }
         guard let arrTime = arrivalTimeForChosenTrip else { return }
@@ -45,6 +47,10 @@ class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPicker
         musicGenrePickerWheel.dataSource = self
         musicGenrePickerWheel.delegate = self
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+    }
     
     @IBAction func startChosenTripButton(_ sender: UIButton) {
         performSegue(withIdentifier: "goToMusic", sender: self)
@@ -59,6 +65,12 @@ class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return genres[row]
+    }
+    
+    func getRadioStations() {
+        
+        
+        
     }
     
     
