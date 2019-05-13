@@ -44,9 +44,6 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //Slussen: 9192, Alvik: 9112
         getDepartureAndArrivalDataFromSL(from: toDest ?? 9192, to: fromDest ?? 9112)
-        
-        tripTableView.reloadData()
-        
     }
     
     // MARK: Start activity indicator
@@ -90,7 +87,9 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         for legs in leg {
                             guard let origin = legs["Origin"] as? [String : Any] else { return }
                             guard let dest = legs["Destination"] as? [String : Any] else { return}
-                            
+                            guard let vehicles = legs["Product"] as? [String : Any] else { return }
+                            guard let vehicle = vehicles["catOutL"] as? String else { return }
+                            print("!!!!!!!!!!!!! vehicle \(vehicle)")
                             let dep = Departure(start: EndPoint.init(json: origin), end: EndPoint.init(json: dest))
                             self.departure.append(dep)
                             
@@ -137,7 +136,6 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         travelLength = endTime - startTime
         
         return travelLength
-        
     }
     
     // MARK: Remove seconds and keep hours and minutes from the time (12:00:00 to 12:00)
