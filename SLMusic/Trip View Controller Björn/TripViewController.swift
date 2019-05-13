@@ -87,9 +87,9 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         guard let legList = trip["LegList"] as? [String : Any] else { return }
                         guard let leg = legList["Leg"] as? [[String : Any]] else { return }
                         
-                        for leg in leg {
-                            guard let origin = leg["Origin"] as? [String : Any] else { return }
-                            guard let dest = leg["Destination"] as? [String : Any] else { return}
+                        for legs in leg {
+                            guard let origin = legs["Origin"] as? [String : Any] else { return }
+                            guard let dest = legs["Destination"] as? [String : Any] else { return}
                             
                             let dep = Departure(start: EndPoint.init(json: origin), end: EndPoint.init(json: dest))
                             self.departure.append(dep)
@@ -111,11 +111,11 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }.resume()
     }
     
-    // MARK: Convert time from string to an int, and then convert hours to minutes
-    func travelTimeLengtConverter(startTime: String, endTime: String) -> Int {
-        var travelLenght: Int = 0
+    // MARK: Convert text from string to an int, and calculate hours, minutes and seconds to minutes and return value
+    func convertFromStringToInt(time: String) -> Int {
+        var newTimeValue: Int = 0
         
-        let startTimeString = startTime
+        let startTimeString = time
         let startStationTime = startTimeString.split(separator: ":")
         let startHoursString = startStationTime[0]
         let startMinutesString = startStationTime[1]
@@ -125,23 +125,19 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let startMinutesInt = Int(startMinutesString) ?? 0
         let startSecondsInt = Int(startSecondsString) ?? 0
         
-        let startStaionTime = (startHoursInt * 60) + (startMinutesInt) + (startSecondsInt / 60)
+        newTimeValue = (startHoursInt * 60) + (startMinutesInt) + (startSecondsInt / 60)
         
-        let endTimeString = endTime
-        let endStationTime = endTimeString.split(separator: ":")
-        let endHoursString = endStationTime[0]
-        let endMinutesString = endStationTime[1]
-        let endSecondsString = endStationTime[2]
+        return newTimeValue
+    }
+    
+    // MARK: Calculate start and end time to show the lenght of the trip
+    func calculateTravelTime(startTime: Int, endTime: Int) -> Int {
+        var travelLength: Int = 0
         
-        let endHoursInt = Int(endHoursString) ?? 0
-        let endMinutesInt = Int(endMinutesString) ?? 0
-        let endSecondsInt = Int(endSecondsString) ?? 0
+        travelLength = endTime - startTime
         
-        let endStaionTime = (endHoursInt * 60) + (endMinutesInt) + (endSecondsInt / 60)
+        return travelLength
         
-        travelLenght = endStaionTime - startStaionTime
-        
-        return travelLenght
     }
     
     // MARK: Remove seconds and keep hours and minutes from the time (12:00:00 to 12:00)
@@ -180,8 +176,8 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let depName = dep.start.name
         let arrName = dep.end.name
-        let time = currentTime()
-        
+        let currTime = currentTime()
+         §
         cell?.departureLabel.font = UIFont(name: fontOnTextInLabels, size: 20)
         cell?.departureLabel.textColor = UIColor(named: "SLBlue")
         
@@ -190,7 +186,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         cell?.currentTimeLabel.font = UIFont(name: fontOnTextInLabels, size: 20)
         cell?.currentTimeLabel.textColor = UIColor(named: "SLBlue")
-        cell?.currentTimeLabel.text = time
+        cell?.currentTimeLabel.text = currTime
         cell?.updateclock()
         
         cell?.departureStationLabel.text = "\(depName ?? "No departure")"
@@ -209,14 +205,17 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         cell?.travelTimeLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
         
-        let travelLenght = travelTimeLengtConverter(startTime: dep.start.time ?? "00", endTime: dep.end.time ?? "00")
+        let startTime = convertFromStringToInt(time: dep.start.time ?? "00")
+        let endTime = convertFromStringToInt(time: dep.end.time ?? "00")
+        let travelLenght = calculateTravelTime(startTime: startTime, endTime: endTime)
+        
         cell?.tripLenghtLabel.text = "\(travelLenght)"
         cell?.tripLenghtLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
         
         cell?.minLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
         
         self.stopActivityIndicator()
-        
+            
         return cell ?? cell!
     }
     

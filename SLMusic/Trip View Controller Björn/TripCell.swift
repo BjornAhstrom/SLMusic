@@ -21,7 +21,7 @@ class TripCell: UITableViewCell {
     @IBOutlet weak var arrivalTimeLabel: UILabel!
     @IBOutlet weak var arrivalStationLabel: UILabel!
     
-    var timer = Timer()
+    private var timer = Timer()
     
     func setLabelsTo(currentTimeLabel: String, departureTimeLabel: String, departureStationLabel: String, tripLenghtLabel: String, arrivalTimeLabel: String, arrivalStationLabel: String) {
         
