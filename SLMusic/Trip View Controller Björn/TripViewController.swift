@@ -29,6 +29,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var fromDest: Int?
     var toDest: Int?
     
+    
     var departure = [Departure]()
     
     override func viewDidLoad() {
@@ -44,7 +45,9 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //Slussen: 9192, Alvik: 9112
         getDepartureAndArrivalDataFromSL(from: toDest ?? 9192, to: fromDest ?? 9112)
+        
         tripTableView.reloadData()
+        
     }
     
     // MARK: Start activity indicator
@@ -152,6 +155,17 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return newTime
     }
     
+    func currentTime() -> String {
+        var currentTime: String
+        
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        let date = Date()
+        currentTime = dateFormatter.string(from: date)
+        
+        return currentTime
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -163,17 +177,11 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as? TripCell
         
-        self.stopActivityIndicator()
-        
         let dep = departure[indexPath.row]
-        
-        let dateFormatter: DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        let date = Date()
-        let dateString = dateFormatter.string(from: date)
         
         let depName = dep.start.name
         let arrName = dep.end.name
+        let time = currentTime()
         
         cell?.departureLabel.font = UIFont(name: fontOnTextInLabels, size: 20)
         cell?.departureLabel.textColor = UIColor(named: "SLBlue")
@@ -183,7 +191,8 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         cell?.currentTimeLabel.font = UIFont(name: fontOnTextInLabels, size: 20)
         cell?.currentTimeLabel.textColor = UIColor(named: "SLBlue")
-        cell?.currentTimeLabel.text = dateString
+        cell?.currentTimeLabel.text = time
+        cell?.updateclock()
         
         cell?.departureStationLabel.text = "\(depName ?? "No departure")"
         cell?.departureStationLabel.font = UIFont(name: fontOnTextInLabels, size: 14)
@@ -206,6 +215,8 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell?.tripLenghtLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
         
         cell?.minLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
+        
+        self.stopActivityIndicator()
         
         return cell ?? cell!
     }
