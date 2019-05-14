@@ -31,6 +31,7 @@ class StartViewController: UIViewController {
     var i = 0
     
     var siteNameLookupDone = false
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         
@@ -67,6 +68,7 @@ class StartViewController: UIViewController {
     }
     
     @IBAction func searchTrip(_ sender: UIButton) {
+        self.startActivityIndicator(activityIndicator: activityIndicator)
 //        for station in stations{
 //            if fromStation.text?.lowercased() == station.lowercased() {
 //                stationExists = true
@@ -120,6 +122,10 @@ class StartViewController: UIViewController {
                         if self.siteNameLookupDone {
                             DispatchQueue.main.async {
                                 self.performSegue(withIdentifier: "goToResult", sender: self)
+                                self.fromStation.text = ""
+                                self.toStation.text = ""
+                                self.stopActivityIndicator(activityIndicator: self.activityIndicator)
+
                             }
                         } else {
                             self.siteNameLookupDone = true
@@ -162,6 +168,9 @@ class StartViewController: UIViewController {
                         if self.siteNameLookupDone {
                             DispatchQueue.main.async {
                                 self.performSegue(withIdentifier: "goToResult", sender: self)
+                                self.fromStation.text = ""
+                                self.toStation.text = ""
+                                self.stopActivityIndicator(activityIndicator: self.activityIndicator)
                             }
                         
                         } else {
@@ -174,7 +183,6 @@ class StartViewController: UIViewController {
                         print(error.localizedDescription)
                     }
                 }
-                
                 }.resume()
             
 //            for station in self.stations {
@@ -183,10 +191,10 @@ class StartViewController: UIViewController {
 //                }   // goToResult, searchTrip
 //            }
        // }
-        
         DispatchQueue.main.async {
-            self.fromStation.text = ""
-            self.toStation.text = ""
+            
         }
+        
+        
     }
 }

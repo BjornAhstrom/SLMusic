@@ -16,7 +16,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private let tripChosenViewControllerId = "tripChosenViewController"
     private let goToSelectedTripId = "goToSelectedTrip"
     
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     var fromSiteId: String?
     var toSiteId: String?
     var departureStationForChosenTripToPass: String?
@@ -30,10 +30,12 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var toDest: Int?
     
     var departure = [Departure]()
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        stopActivityIndicator()
+        self.stopActivityIndicator(activityIndicator: activityIndicator)
+        
         
         // Odenplan: 9117, Solna: 9305
         fromDest = Int(fromSiteId ?? "9117")
@@ -44,30 +46,11 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //Slussen: 9192, Alvik: 9112
         getDepartureAndArrivalDataFromSL(from: toDest ?? 9192, to: fromDest ?? 9112)
-        
-        tripTableView.reloadData()
-        
-    }
-    
-    // MARK: Start activity indicator
-    func startActivityIndicator() {
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.style = UIActivityIndicatorView.Style.gray
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
-    }
-    
-    // MARK: Stop activity indicator
-    func stopActivityIndicator() {
-        activityIndicator.stopAnimating()
-        UIApplication.shared.endIgnoringInteractionEvents()
     }
     
     // MARK: Get departure and arrival data (siteId) from StartViewController
     func getDepartureAndArrivalDataFromSL(from: Int, to: Int) {
-        startActivityIndicator()
+        self.startActivityIndicator(activityIndicator: activityIndicator)
         
         guard let trip =                                                                                                     URL(string:"https://api.sl.se/api2/TravelplannerV3_1/trip.json?key=\(SLReseplanerare3_1)&lang=se&originExtId=\(from)&destExtId=\(to)&maxChange=3&lines=!19") else { return }
         
@@ -90,8 +73,9 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         for legs in leg {
                             guard let origin = legs["Origin"] as? [String : Any] else { return }
                             guard let dest = legs["Destination"] as? [String : Any] else { return}
+                            guard let info = legs["Product"] as? [String : Any] else { return }
                             
-                            let dep = Departure(start: EndPoint.init(json: origin), end: EndPoint.init(json: dest))
+                            let dep = Departure(start: EndPoint.init(json: origin), end: EndPoint.init(json: dest), info: Info.init(json: info))
                             self.departure.append(dep)
                             
                             DispatchQueue.main.async {
@@ -137,7 +121,6 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         travelLength = endTime - startTime
         
         return travelLength
-        
     }
     
     // MARK: Remove seconds and keep hours and minutes from the time (12:00:00 to 12:00)
@@ -171,7 +154,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as? TripCell
-        
+
         let dep = departure[indexPath.row]
         
         let depName = dep.start.name
@@ -213,9 +196,12 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell?.tripLenghtLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
         
         cell?.minLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
+        let vehicle: String = "\(dep.info.catOutL ?? "No vehicle")"
+        cell?.minLabel.text = "min, \(vehicle)"
         
-        self.stopActivityIndicator()
-            
+        self.stopActivityIndicator(activityIndicator: activityIndicator)
+        
+        
         return cell ?? cell!
     }
     
@@ -261,5 +247,21 @@ extension UIViewController {
         let alert = UIAlertController(title: titel, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion:  nil)
+    }
+    
+    // MARK: Start activity indicator
+    func startActivityIndicator(activityIndicator: UIActivityIndicatorView ) {
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+    }
+    
+    // MARK: Stop activity indicator
+    func stopActivityIndicator(activityIndicator: UIActivityIndicatorView ) {
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
     }
 }
