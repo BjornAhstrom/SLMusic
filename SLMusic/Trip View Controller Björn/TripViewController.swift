@@ -15,6 +15,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private let SLReseplanerare3_1 = "f8087c9e88564b9f9a53e74a2c37eae5"
     private let tripChosenViewControllerId = "tripChosenViewController"
     private let goToSelectedTripId = "goToSelectedTrip"
+    private var departure = [Departure]()
     
     
     var fromSiteId: String?
@@ -29,13 +30,11 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var fromDest: Int?
     var toDest: Int?
     
-    var departure = [Departure]()
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.stopActivityIndicator(activityIndicator: activityIndicator)
-        
         
         // Odenplan: 9117, Solna: 9305
         fromDest = Int(fromSiteId ?? "9117")
@@ -154,7 +153,7 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as? TripCell
-
+        
         let dep = departure[indexPath.row]
         
         let depName = dep.start.name
@@ -200,7 +199,6 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell?.minLabel.text = "min, \(vehicle)"
         
         self.stopActivityIndicator(activityIndicator: activityIndicator)
-        
         
         return cell ?? cell!
     }
