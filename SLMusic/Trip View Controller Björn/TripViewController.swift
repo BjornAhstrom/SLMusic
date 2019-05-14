@@ -15,8 +15,9 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private let SLReseplanerare3_1 = "f8087c9e88564b9f9a53e74a2c37eae5"
     private let tripChosenViewControllerId = "tripChosenViewController"
     private let goToSelectedTripId = "goToSelectedTrip"
+    private var departure = [Departure]()
     
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     var fromSiteId: String?
     var toSiteId: String?
     var departureStationForChosenTripToPass: String?
@@ -29,11 +30,11 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var fromDest: Int?
     var toDest: Int?
     
-    var departure = [Departure]()
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        stopActivityIndicator()
+        self.stopActivityIndicator(activityIndicator: activityIndicator)
         
         // Odenplan: 9117, Solna: 9305
         fromDest = Int(fromSiteId ?? "9117")
@@ -44,28 +45,11 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //Slussen: 9192, Alvik: 9112
         getDepartureAndArrivalDataFromSL(from: toDest ?? 9192, to: fromDest ?? 9112)
-        tripTableView.reloadData()
-    }
-    
-    // MARK: Start activity indicator
-    func startActivityIndicator() {
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.style = UIActivityIndicatorView.Style.gray
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
-    }
-    
-    // MARK: Stop activity indicator
-    func stopActivityIndicator() {
-        activityIndicator.stopAnimating()
-        UIApplication.shared.endIgnoringInteractionEvents()
     }
     
     // MARK: Get departure and arrival data (siteId) from StartViewController
     func getDepartureAndArrivalDataFromSL(from: Int, to: Int) {
-        startActivityIndicator()
+        self.startActivityIndicator(activityIndicator: activityIndicator)
         
         guard let trip =                                                                                                     URL(string:"https://api.sl.se/api2/TravelplannerV3_1/trip.json?key=\(SLReseplanerare3_1)&lang=se&originExtId=\(from)&destExtId=\(to)&maxChange=3&lines=!19") else { return }
         
@@ -85,11 +69,12 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         guard let legList = trip["LegList"] as? [String : Any] else { return }
                         guard let leg = legList["Leg"] as? [[String : Any]] else { return }
                         
-                        for leg in leg {
-                            guard let origin = leg["Origin"] as? [String : Any] else { return }
-                            guard let dest = leg["Destination"] as? [String : Any] else { return}
+                        for legs in leg {
+                            guard let origin = legs["Origin"] as? [String : Any] else { return }
+                            guard let dest = legs["Destination"] as? [String : Any] else { return}
+                            guard let info = legs["Product"] as? [String : Any] else { return }
                             
-                            let dep = Departure(start: EndPoint.init(json: origin), end: EndPoint.init(json: dest))
+                            let dep = Departure(start: EndPoint.init(json: origin), end: EndPoint.init(json: dest), info: Info.init(json: info))
                             self.departure.append(dep)
                             
                             DispatchQueue.main.async {
@@ -109,11 +94,11 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }.resume()
     }
     
-    // MARK: Convert time from string to an int, and then convert hours to minutes
-    func travelTimeLengtConverter(startTime: String, endTime: String) -> Int {
-        var travelLenght: Int = 0
+    // MARK: Convert text from string to an int, and calculate hours, minutes and seconds to minutes and return value
+    func convertFromStringToInt(time: String) -> Int {
+        var newTimeValue: Int = 0
         
-        let startTimeString = startTime
+        let startTimeString = time
         let startStationTime = startTimeString.split(separator: ":")
         let startHoursString = startStationTime[0]
         let startMinutesString = startStationTime[1]
@@ -123,23 +108,18 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let startMinutesInt = Int(startMinutesString) ?? 0
         let startSecondsInt = Int(startSecondsString) ?? 0
         
-        let startStaionTime = (startHoursInt * 60) + (startMinutesInt) + (startSecondsInt / 60)
+        newTimeValue = (startHoursInt * 60) + (startMinutesInt) + (startSecondsInt / 60)
         
-        let endTimeString = endTime
-        let endStationTime = endTimeString.split(separator: ":")
-        let endHoursString = endStationTime[0]
-        let endMinutesString = endStationTime[1]
-        let endSecondsString = endStationTime[2]
+        return newTimeValue
+    }
+    
+    // MARK: Calculate start and end time to show the lenght of the trip
+    func calculateTravelTime(startTime: Int, endTime: Int) -> Int {
+        var travelLength: Int = 0
         
-        let endHoursInt = Int(endHoursString) ?? 0
-        let endMinutesInt = Int(endMinutesString) ?? 0
-        let endSecondsInt = Int(endSecondsString) ?? 0
+        travelLength = endTime - startTime
         
-        let endStaionTime = (endHoursInt * 60) + (endMinutesInt) + (endSecondsInt / 60)
-        
-        travelLenght = endStaionTime - startStaionTime
-        
-        return travelLenght
+        return travelLength
     }
     
     // MARK: Remove seconds and keep hours and minutes from the time (12:00:00 to 12:00)
@@ -150,6 +130,17 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         newTime = String(convertedTime)
         
         return newTime
+    }
+    
+    func currentTime() -> String {
+        var currentTime: String
+        
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        let date = Date()
+        currentTime = dateFormatter.string(from: date)
+        
+        return currentTime
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -163,17 +154,11 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as? TripCell
         
-        self.stopActivityIndicator()
-        
         let dep = departure[indexPath.row]
-        
-        let dateFormatter: DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        let date = Date()
-        let dateString = dateFormatter.string(from: date)
         
         let depName = dep.start.name
         let arrName = dep.end.name
+        let currTime = currentTime()
         
         cell?.departureLabel.font = UIFont(name: fontOnTextInLabels, size: 20)
         cell?.departureLabel.textColor = UIColor(named: "SLBlue")
@@ -183,7 +168,8 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         cell?.currentTimeLabel.font = UIFont(name: fontOnTextInLabels, size: 20)
         cell?.currentTimeLabel.textColor = UIColor(named: "SLBlue")
-        cell?.currentTimeLabel.text = dateString
+        cell?.currentTimeLabel.text = currTime
+        cell?.updateclock()
         
         cell?.departureStationLabel.text = "\(depName ?? "No departure")"
         cell?.departureStationLabel.font = UIFont(name: fontOnTextInLabels, size: 14)
@@ -201,11 +187,18 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         cell?.travelTimeLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
         
-        let travelLenght = travelTimeLengtConverter(startTime: dep.start.time ?? "00", endTime: dep.end.time ?? "00")
+        let startTime = convertFromStringToInt(time: dep.start.time ?? "00")
+        let endTime = convertFromStringToInt(time: dep.end.time ?? "00")
+        let travelLenght = calculateTravelTime(startTime: startTime, endTime: endTime)
+        
         cell?.tripLenghtLabel.text = "\(travelLenght)"
         cell?.tripLenghtLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
         
         cell?.minLabel.font = UIFont(name: fontOnTextInLabels, size: 18)
+        let vehicle: String = "\(dep.info.catOutL ?? "No vehicle")"
+        cell?.minLabel.text = "min, \(vehicle)"
+        
+        self.stopActivityIndicator(activityIndicator: activityIndicator)
         
         return cell ?? cell!
     }
@@ -252,5 +245,21 @@ extension UIViewController {
         let alert = UIAlertController(title: titel, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion:  nil)
+    }
+    
+    // MARK: Start activity indicator
+    func startActivityIndicator(activityIndicator: UIActivityIndicatorView ) {
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+    }
+    
+    // MARK: Stop activity indicator
+    func stopActivityIndicator(activityIndicator: UIActivityIndicatorView ) {
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
     }
 }

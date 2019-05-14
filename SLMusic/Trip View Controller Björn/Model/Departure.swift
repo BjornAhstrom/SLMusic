@@ -11,9 +11,11 @@ import Foundation
 class Departure {
     var start: EndPoint
     var end: EndPoint
+    var info: Info
     
-    init(start: EndPoint, end: EndPoint) {
+    init(start: EndPoint, end: EndPoint, info: Info) {
         self.start = start
         self.end = end
+        self.info = info
     }
 }

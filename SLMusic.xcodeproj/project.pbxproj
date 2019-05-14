@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F086DF4227AEDFF0030A128 /* TripChosenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */; };
 		034BB788227B5C3B0029A0A4 /* AVPLayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BB787227B5C3B0029A0A4 /* AVPLayerVC.swift */; };
+		0F086DF4227AEDFF0030A128 /* TripChosenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */; };
 		1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */; };
 		1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2C2276F8E4000FEA40 /* ViewController.swift */; };
 		1E195C302276F8E4000FEA40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C2E2276F8E4000FEA40 /* Main.storyboard */; };
@@ -16,16 +16,15 @@
 		1E195C352276F8E5000FEA40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C332276F8E5000FEA40 /* LaunchScreen.storyboard */; };
 		1E195C4F22785A01000FEA40 /* TripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C4E22785A01000FEA40 /* TripViewController.swift */; };
 		1E195C5122785A23000FEA40 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C5022785A23000FEA40 /* TripCell.swift */; };
-		1EAD34FA227DF63B0021FAD5 /* CityTransportationStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAD34F9227DF63B0021FAD5 /* CityTransportationStop.swift */; };
-		1EAD34FC227DF99D0021FAD5 /* CityTransportationStops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAD34FB227DF99D0021FAD5 /* CityTransportationStops.swift */; };
+		1E6FE40D2289A5EC00345CD1 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FE40C2289A5EC00345CD1 /* Info.swift */; };
 		1ED6BDB8228025E100BF42C4 /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED6BDB7228025E100BF42C4 /* Departure.swift */; };
 		1ED6BDBC228167EB00BF42C4 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED6BDBB228167EB00BF42C4 /* EndPoint.swift */; };
 		413BCA4022772B260095B2F7 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413BCA3F22772B260095B2F7 /* StartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripChosenViewController.swift; sourceTree = "<group>"; };
 		034BB787227B5C3B0029A0A4 /* AVPLayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPLayerVC.swift; sourceTree = "<group>"; };
+		0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripChosenViewController.swift; sourceTree = "<group>"; };
 		1E195C272276F8E4000FEA40 /* SLMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E195C2C2276F8E4000FEA40 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,8 +34,7 @@
 		1E195C362276F8E5000FEA40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E195C4E22785A01000FEA40 /* TripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewController.swift; sourceTree = "<group>"; };
 		1E195C5022785A23000FEA40 /* TripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCell.swift; sourceTree = "<group>"; };
-		1EAD34F9227DF63B0021FAD5 /* CityTransportationStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTransportationStop.swift; sourceTree = "<group>"; };
-		1EAD34FB227DF99D0021FAD5 /* CityTransportationStops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTransportationStops.swift; sourceTree = "<group>"; };
+		1E6FE40C2289A5EC00345CD1 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		1ED6BDB7228025E100BF42C4 /* Departure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Departure.swift; sourceTree = "<group>"; };
 		1ED6BDBB228167EB00BF42C4 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		413BCA3F22772B260095B2F7 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartViewController.swift; path = ../StartViewController.swift; sourceTree = "<group>"; };
@@ -111,10 +109,9 @@
 		1EAD34F8227DF5840021FAD5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1EAD34F9227DF63B0021FAD5 /* CityTransportationStop.swift */,
-				1EAD34FB227DF99D0021FAD5 /* CityTransportationStops.swift */,
 				1ED6BDB7228025E100BF42C4 /* Departure.swift */,
 				1ED6BDBB228167EB00BF42C4 /* EndPoint.swift */,
+				1E6FE40C2289A5EC00345CD1 /* Info.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -251,9 +248,8 @@
 				034BB788227B5C3B0029A0A4 /* AVPLayerVC.swift in Sources */,
 				1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */,
 				1E195C4F22785A01000FEA40 /* TripViewController.swift in Sources */,
+				1E6FE40D2289A5EC00345CD1 /* Info.swift in Sources */,
 				1ED6BDBC228167EB00BF42C4 /* EndPoint.swift in Sources */,
-				1EAD34FC227DF99D0021FAD5 /* CityTransportationStops.swift in Sources */,
-				1EAD34FA227DF63B0021FAD5 /* CityTransportationStop.swift in Sources */,
 				1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */,
 				0F086DF4227AEDFF0030A128 /* TripChosenViewController.swift in Sources */,
 				1ED6BDB8228025E100BF42C4 /* Departure.swift in Sources */,
