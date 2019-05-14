@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		034BB788227B5C3B0029A0A4 /* AVPLayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BB787227B5C3B0029A0A4 /* AVPLayerVC.swift */; };
 		0F086DF4227AEDFF0030A128 /* TripChosenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */; };
+		0F4E5ECA228ACBB500F5EBD7 /* Channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E5EC9228ACBB500F5EBD7 /* Channels.swift */; };
 		1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */; };
 		1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2C2276F8E4000FEA40 /* ViewController.swift */; };
 		1E195C302276F8E4000FEA40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C2E2276F8E4000FEA40 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		034BB787227B5C3B0029A0A4 /* AVPLayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPLayerVC.swift; sourceTree = "<group>"; };
 		0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripChosenViewController.swift; sourceTree = "<group>"; };
+		0F4E5EC9228ACBB500F5EBD7 /* Channels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channels.swift; sourceTree = "<group>"; };
 		1E195C272276F8E4000FEA40 /* SLMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E195C2C2276F8E4000FEA40 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */,
+				0F4E5EC9228ACBB500F5EBD7 /* Channels.swift */,
 			);
 			path = "Trip Chosen View Controller Luan";
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 			files = (
 				034BB788227B5C3B0029A0A4 /* AVPLayerVC.swift in Sources */,
 				1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */,
+				0F4E5ECA228ACBB500F5EBD7 /* Channels.swift in Sources */,
 				1E195C4F22785A01000FEA40 /* TripViewController.swift in Sources */,
 				1E6FE40D2289A5EC00345CD1 /* Info.swift in Sources */,
 				1ED6BDBC228167EB00BF42C4 /* EndPoint.swift in Sources */,

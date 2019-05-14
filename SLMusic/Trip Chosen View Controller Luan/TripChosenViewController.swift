@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
   
@@ -24,12 +25,14 @@ class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var departureTimeForChosenTrip: String?
     var tripChosenTimeLength: String?
     
-    let genres = ["Pop", "Rock", "Rap", "Country", "Latin"]
+    var radioChannels = [Channels]()
+    
+    var selectedGenre: String?
+    var idToIvan: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Du får ändra om allt som du vill ha det.  Mvh Björn :)
+        getAPI()
         
         guard let arrNam = arrivalStationForChosenTrip else { return }
         guard let arrTime = arrivalTimeForChosenTrip else { return }
@@ -44,10 +47,13 @@ class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPicker
         tripChosenTimeLabel.text = travelTimeLength
         musicGenrePickerWheel.dataSource = self
         musicGenrePickerWheel.delegate = self
+        
     }
+    
     
     @IBAction func startChosenTripButton(_ sender: UIButton) {
         performSegue(withIdentifier: "goToMusic", sender: self)
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -55,11 +61,59 @@ class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return genres.count
+        return radioChannels.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return genres[row]
+        return radioChannels[row].name
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print("???????????????\(row)")
+        guard let id = radioChannels[row].id else {return}
+        idToIvan = id
+        
     }
     
+    func getAPI() {
+        print("Starting Request")
+        guard let radioURL = URL(string: "http://api.sr.se/api/v2/channels/index?format=json&indent=true") else {return}
+        let session = URLSession.shared
+        session.dataTask(with: radioURL) { (data, response, error) in
+            print("Request activated")
+        if let response = response {
+            print("Print \(response)")
+        }
+        if let data = data {
+            do {
+                guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {return}
+                
+                print(json)
+                print("Successful API request")
+                guard let channels = json["channels"] as? [[String: Any]] else {return}
+                for items in channels {
+                    let channelss = Channels(json: items)
+                    self.radioChannels.append(channelss)
+                    print("Channels added \(channelss)" )
+                }
+               
+                
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+        }
+        
+        
+        }.resume()
+        
+    }
+    
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "goToMusic" {
+//            guard let destVC = segue.destination as? NowPlayingViewController else {return}
+//            destVC.luanURL = idToIvan
+//        }
+//    }
+//    
     
 }
