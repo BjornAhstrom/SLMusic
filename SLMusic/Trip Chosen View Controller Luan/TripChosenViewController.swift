@@ -19,6 +19,7 @@ class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var tripChosenTimeLabel: UILabel!
     @IBOutlet weak var musicGenrePickerWheel: UIPickerView!
     
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var arrivalStationForChosenTrip: String?
     var arrivalTimeForChosenTrip: String?
     var departureStationForChosenTrip: String?
@@ -70,10 +71,10 @@ class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPicker
         print("???????????????\(row)")
         guard let id = radioChannels[row].id else {return}
         idToIvan = id
-        
     }
     
     func getAPI() {
+        self.startActivityIndicator(activityIndicator: activityIndicator)
         print("Starting Request")
         guard let radioURL = URL(string: "http://api.sr.se/api/v2/channels/index?format=json&indent=true") else {return}
         let session = URLSession.shared
@@ -104,7 +105,7 @@ class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
         
         }.resume()
-        
+        self.stopActivityIndicator(activityIndicator: activityIndicator)
     }
     
     
