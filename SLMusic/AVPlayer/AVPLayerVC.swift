@@ -29,6 +29,7 @@ class AVPLayerVC: UIViewController {
     var avPlayerItem:AVPlayerItem?
     var luanURL: Int?
     var luanTime: String?
+    
     var player = [PlayerModel]()
    //var currentURL = URL(string: "")
   
@@ -68,9 +69,10 @@ class AVPLayerVC: UIViewController {
     }
     
     @objc func runTimer() {
+        let currentTime = Int(luanTime ?? "10")
         
-        let currentTime = (luanTime! as NSString).integerValue
-        print(currentTime)
+//        let currentTime = (luanTime! as NSString).integerValue
+//        print(currentTime)
         
         counter -= 0.1
         

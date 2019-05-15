@@ -413,7 +413,7 @@
                         <outlet property="departureTimeForChosenTripLabel" destination="ShJ-6B-tEB" id="HMs-HV-bLg"/>
                         <outlet property="musicGenrePickerWheel" destination="8P8-QK-ihg" id="o6k-qM-H5C"/>
                         <outlet property="tripChosenTimeLabel" destination="VoA-5E-eGx" id="QzH-YI-FnX"/>
-                        <segue destination="ep1-6w-Ddc" kind="presentation" identifier="goToMusic" id="xRa-37-TJK"/>
+                        <segue destination="ep1-6w-Ddc" kind="show" identifier="goToMusic" id="xRa-37-TJK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfc-cW-drf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -513,6 +513,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                         <viewLayoutGuide key="safeArea" id="dHO-nL-nUb"/>
                     </view>
                     <connections>
