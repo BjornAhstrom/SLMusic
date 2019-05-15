@@ -40,18 +40,19 @@ class AVPLayerVC: UIViewController {
         // gets channel id //
         getAPI(id: luanURL ?? 132)
         ///////////////////////
-        let urlstring = URL(string: "http://api.sr.se/api/v2/channels/\(luanURL ?? 132)?format=json")
-       // let urlstring = "http://sverigesradio.se/topsy/direkt/srapi/\(String(describing: luanURL)).mp3"
-        let url = urlstring
-        print("playing \(String(describing: url))")
-        avPlayerItem = AVPlayerItem.init(url: url! as URL)
+//        let urlstring = URL(string: "http://api.sr.se/api/v2/channels/\(luanURL ?? 132)?format=json")
+        guard let urlstring = URL(string: "http://sverigesradio.se/topsy/direkt/srapi/\(luanURL ?? 164).mp3") else { return }
+//        print("playing \(String(describing: url))")
+        
+        avPlayerItem = AVPlayerItem.init(url: urlstring)
         avPlayer = AVPlayer.init(playerItem: avPlayerItem)
         avPlayer.volume = 1.0
         avPlayer.play()
+        
         // starts timer //
         startTimer()
         // plays music //
-        playMusik(url: urlstring!)
+        //playMusik(url: urlstring)
         // shows time //
         MusikTimerMainLbl.text = luanTime! + " min"
        
