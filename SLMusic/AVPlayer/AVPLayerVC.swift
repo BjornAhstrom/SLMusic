@@ -18,7 +18,11 @@ class AVPLayerVC: UIViewController {
     @IBOutlet weak var musikNameLbl: UILabel!
     @IBOutlet weak var musikSlider: UISlider!
     @IBOutlet weak var MusikTimerMainLbl: UILabel!
+    @IBOutlet weak var tripTimeLeft: UILabel!
     
+    var timer = Timer()
+    var isTimerRunning = false
+    var counter = 0.0
     
     var avPlayer = AVPlayer()
     var audioStuffed = false
@@ -44,14 +48,85 @@ class AVPLayerVC: UIViewController {
         avPlayer = AVPlayer.init(playerItem: avPlayerItem)
         avPlayer.volume = 1.0
         avPlayer.play()
-        
+        // starts timer //
+        startTimer()
         // plays music //
         playMusik(url: urlstring!)
         // shows time //
         MusikTimerMainLbl.text = luanTime! + " min"
        
+    
+    }
+    
+    func startTimer() {
+        if !isTimerRunning {
+            timer = Timer.init(timeInterval: 0.1, target: self, selector: #selector(runTimer), userInfo: nil, repeats: true)
+            isTimerRunning = true
         
-     
+        }
+    }
+    
+    @objc func runTimer() {
+        
+        let currentTime = (luanTime! as NSString).integerValue
+        print(currentTime)
+        
+        counter -= 0.1
+        
+        // hh: mm: ss
+        let flooredCounter = Int(floor(counter))
+        let hour = flooredCounter / 3600
+        let minute = (flooredCounter % 3600) / 60
+        var minuteString = "\(minute)"
+        if minute < 10 {
+            minuteString = "0\(minute)"
+        }
+        let second = (flooredCounter % 3600) % 60
+        var secondString = "\(second)"
+        if second < 10 {
+            secondString = "0\(second)"
+        }
+        
+        let decisecond = String(format: "%.1f", counter).components(separatedBy: ".").last!
+        print("\(hour):\(minute):\(second)")
+        
+        tripTimeLeft.text = "\(counter)"
+        
+        
+        
+        if counter == 0 {
+            timer.invalidate()
+            self.avPlayer.pause()
+//            let alertController = UIAlertController(title: "Resan är avslutad, message: Vill du avsluta musik?: OK":, preferredStyle: .alert)
+//            let defaultAction = UIAlertAction(title: "Forstätta", style: .cancel, handler: nil)
+//            let defaultAction = UIAlertAction(title: "OK", style: .cancel) { (UIAlertAction) in
+//                self.navigationController!.popViewController(animated: true)
+//            }
+//
+//            alertController.addAction(defaultAction)
+//            self.present(alertController, animated: true, completion: nil)
+//
+            
+            
+            let alert = UIAlertController(title: "Resan är slut", message: "Vill du fortsätta musiken?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                case .default:
+                    self.avPlayer.play()
+                    
+                case .cancel:
+                    self.navigationController!.popViewController(animated: true)
+    
+                    
+                case .destructive:
+                   print("destructive")
+                @unknown default:
+                    print("default")
+                }}))
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
     }
     
    
@@ -123,7 +198,6 @@ func getAPI (id: Int) {
                 
                 print("!!!!!!!!!!!!! \(name)")
                 print("!!!!!!!!!!!!! \(image)")
-                
                 
                 
                 let save = PlayerModel(json: channel)
