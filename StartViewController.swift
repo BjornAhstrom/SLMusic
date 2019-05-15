@@ -9,7 +9,6 @@
 //Sök på restiden för playlisten
 
 import UIKit
-import Alamofire
 
 class StartViewController: UIViewController {
     
@@ -17,8 +16,6 @@ class StartViewController: UIViewController {
     @IBOutlet weak var toStation: UITextField!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var search: UIButton!
-    
-    //    let stations = ["Abrahamsberg","Akalla","Alby","Alvik","Aspudden","Axelsberg","Bagarmossen","Bandhagen","Bergshamra","Björkhagen","Blackeberg", "Blåsut", "Bredäng",    "Brommaplan",  "Danderyds sjukhus","Duvbo", "Enskede gård", "Farsta", "Farsta strand", "Fittja", "Fridhemsplan", "Fridhemsplan", "Fruängen", "Gamla stan", "Globen", "Gubbängen", "Gullmarsplan", "Gärdet", "Hagsätra", "Hallonbergen", "Hallunda", "Hammarbyhöjden", "Hjulsta", "Hornstull", "Husby", "Huvudsta", "Hägerstensåsen", "Hässelby gård", "Hässelby strand","Högdalen","Hökarängen","Hötorget","Islandstorget","Johannelund","Karlaplan","Kista","Kristineberg","Kungsträdgården","Kärrtorp","Liljeholmen","Mariatorget","Masmo","Medborgarplatsen","Midsommarkransen","Mälarhöjden","Mörby centrum","Norsborg","Näckrosen","Odenplan","Rinkeby","Rissne","Ropsten","Råcksta","Rådhuset","Rådmansgatan","Rågsved","S:t Eriksplan","Sandsborg","Skanstull","Skarpnäck","Skogskyrkogården","Skärholmen","Skärmarbrink","Slussen","Sockenplan","Solna centrum","Stadion","Stadshagen","Stora mossen","Stureby","Sundbybergs centrum","Svedmyra","Sätra","T-Centralen","Tallkrogen","Tekniska högskolan","Telefonplan","Tensta","Thorildsplan","Universitetet","Vreten","Vårberg","Vårby gård","Vällingby","Västertorp","Västra skogen","Zinkensdamm","Åkeshov","Ängbyplan","Örnsberg","Östermalmstorg", "test1", "test"]
     
     var toStationName = ""
     var fromStationName = ""
@@ -35,24 +32,12 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        //http://api.sl.se/api2/realtimedeparturesv4.json?key=01d6897342ce40b0a5ded8df798389e7&siteid=9192&timewindow=5
-        
-        
-        //        AF.request("http://api.sl.se/api2/TravelplannerV3_1/trip.json?key=5cd013f40caa4e44b9c7efea27a974a0&originId=9192&destId=9112&searchForArrival=0").responseJSON { response in
-        //            switch response.result {
-        //            case .success(let json):
-        //                print("!!!!!!!!!!!\(json)")
-        //            case .failure(let error):
-        //                print(error)
-        //            }
-        //        }
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat =  "HH:mm"
         
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -69,32 +54,18 @@ class StartViewController: UIViewController {
     
     @IBAction func searchTrip(_ sender: UIButton) {
         self.startActivityIndicator(activityIndicator: activityIndicator)
-        //        for station in stations{
-        //            if fromStation.text?.lowercased() == station.lowercased() {
-        //                stationExists = true
-        //            }
-        //        }
+        
         fromStationName = fromStation.text!
         toStationName = toStation.text!
         
-        print("!!!!!!! From \(fromStationName)")
-        print("!!!!!!! From \(toStationName)")
         
-        if fromStationName == "" || toStationName == "" { //}|| stationExists == false {
-            let alert = UIAlertController(title: "Error", message: "Du måste fylle i stationsnamn som finns!", preferredStyle: .alert)
+        if fromStationName == "" || toStationName == "" {
+            let alert = UIAlertController(title: "Error", message: "Du måste fylle i ett stationsnamn!", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Stäng", style: .default, handler: nil))
             
             self.present(alert, animated: true)
         }
-        
-        // if stationExists == true{
-        
-        print("timepicker-------------")
-        print(timePicker.date)
-        
-        print("Searching trip")
-        
         
         guard let trip = URL(string: "https://api.sl.se/api2/typeahead.json?key=ca35ed126dfa42c69bef67cb1c3ba5df&searchstring=\(fromStationName)&stationsonly=true&maxresults=1") else { return }
         
@@ -115,9 +86,6 @@ class StartViewController: UIViewController {
                         self.siteID2 = id
                     }
                     
-                    //                        let test = responseData[0]
-                    //                        self.siteID2 = test["SiteId"] as! String
-                    
                     print("david start id 1 \(self.siteID)")
                     if self.siteNameLookupDone {
                         DispatchQueue.main.async {
@@ -130,7 +98,6 @@ class StartViewController: UIViewController {
                     } else {
                         self.siteNameLookupDone = true
                     }
-                    
                     
                 } catch {
                     print(error)
@@ -146,7 +113,7 @@ class StartViewController: UIViewController {
         let session2 = URLSession.shared
         session2.dataTask(with: trip2) { (data, response, error) in
             if let response = response {
-                // print("Response \(response)")
+                print("Response \(response)")
             }
             if let data = data {
                 do {
@@ -160,8 +127,6 @@ class StartViewController: UIViewController {
                         self.siteID = id
                         print("david slut id 2 \(self.siteID2)")
                     }
-                    //                        let test = responseData[0]
-                    //                        self.siteID = test["SiteId"] as! String
                     
                     print("david slut id 2 \(self.siteID2)")
                     
