@@ -108,12 +108,13 @@ class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "goToMusic" {
-//            guard let destVC = segue.destination as? NowPlayingViewController else {return}
-//            destVC.luanURL = idToIvan
-//        }
-//    }
-//    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToMusic" {
+            guard let destVC = segue.destination as?  AVPLayerVC else {return}
+            destVC.luanURL = idToIvan
+            destVC.luanTime = tripChosenTimeLength
+        }
+    }
+    
     
 }
