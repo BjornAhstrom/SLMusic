@@ -41,9 +41,9 @@ class AVPLayerVC: UIViewController {
         // gets channel id //
         getAPI(id: luanURL ?? 132)
         ///////////////////////
-//        let urlstring = URL(string: "http://api.sr.se/api/v2/channels/\(luanURL ?? 132)?format=json")
+   //        let urlstring = URL(string: "http://api.sr.se/api/v2/channels/\(luanURL ?? 132)?format=json")
         guard let urlstring = URL(string: "http://sverigesradio.se/topsy/direkt/srapi/\(luanURL ?? 164).mp3") else { return }
-//        print("playing \(String(describing: url))")
+   //        print("playing \(String(describing: url))")
         
         avPlayerItem = AVPlayerItem.init(url: urlstring)
         avPlayer = AVPlayer.init(playerItem: avPlayerItem)
@@ -51,6 +51,7 @@ class AVPLayerVC: UIViewController {
         avPlayer.play()
         
         // starts timer //
+        print("!!!!!!!!!!!! 1")
         startTimer()
         // plays music //
         //playMusik(url: urlstring)
@@ -61,23 +62,58 @@ class AVPLayerVC: UIViewController {
     }
     
     func startTimer() {
-        if !isTimerRunning {
-            timer = Timer.init(timeInterval: 0.1, target: self, selector: #selector(runTimer), userInfo: nil, repeats: true)
-            isTimerRunning = true
-        
-        }
+        print("!!!!!!!!!!!! 2")
+//        if !isTimerRunning {
+//
+//            isTimerRunning = true
+//
+//        }
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(AVPLayerVC.runTimer), userInfo: nil, repeats: true)
     }
     
     @objc func runTimer() {
+        
+        
+//        if startGameSecond < 1 {
+//            timer.invalidate()
+//            runTimer()
+//        } else {
+//            startGameSecond -= 1
+//            startGameTimerLabel.text! = “\(startGameSecond)”
+//        }
+//    }    func stopingTimer() {
+//        if self.stopTimer == false {
+//            timer.invalidate()
+//            self.stopTimer = true
+//        }
+        
+        
+        
+        
+        print("!!!!!!!!!!!! 3")
         let currentTime = Int(luanTime ?? "10")
+        //print(String(describing: currentTime))
+         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+         print("Current Time: \(currentTime)")
         
 //        let currentTime = (luanTime! as NSString).integerValue
 //        print(currentTime)
         
-        counter -= 0.1
+        counter -= 1.0
+        
+        var timeLeft = 0
+        
+        if let currentTime = currentTime {
+            timeLeft = currentTime * 60
+        }
+        
+        
+        //guard let timeLeft = currentTime * 60 else {return}
+        
+        timeLeft = timeLeft + Int(counter)
         
         // hh: mm: ss
-        let flooredCounter = Int(floor(counter))
+        let flooredCounter = Int(timeLeft)
         let hour = flooredCounter / 3600
         let minute = (flooredCounter % 3600) / 60
         var minuteString = "\(minute)"
@@ -90,53 +126,41 @@ class AVPLayerVC: UIViewController {
             secondString = "0\(second)"
         }
         
-        let decisecond = String(format: "%.1f", counter).components(separatedBy: ".").last!
+        //let decisecond = String(format: "%.1f", counter).components(separatedBy: ".").last!
         print("\(hour):\(minute):\(second)")
         
-        tripTimeLeft.text = "\(counter)"
+        
+        //var  time = Double(currentTime!) + counter
+        
+        tripTimeLeft.text = "\(minute):\(second)"  // "\(timeLeft)"
         
         
         
-        if counter == 0 {
+        if timeLeft == 0 {
             timer.invalidate()
             self.avPlayer.pause()
-//            let alertController = UIAlertController(title: "Resan är avslutad, message: Vill du avsluta musik?: OK":, preferredStyle: .alert)
-//            let defaultAction = UIAlertAction(title: "Forstätta", style: .cancel, handler: nil)
-//            let defaultAction = UIAlertAction(title: "OK", style: .cancel) { (UIAlertAction) in
-//                self.navigationController!.popViewController(animated: true)
-//            }
-//
-//            alertController.addAction(defaultAction)
-//            self.present(alertController, animated: true, completion: nil)
-//
-            
-            
-            let alert = UIAlertController(title: "Resan är slut", message: "Vill du fortsätta musiken?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                switch action.style{
-                case .default:
-                    self.avPlayer.play()
-                    
-                case .cancel:
-                    self.navigationController!.popViewController(animated: true)
-    
-                    
-                case .destructive:
-                   print("destructive")
-                @unknown default:
-                    print("default")
-                }}))
-            self.present(alert, animated: true, completion: nil)
-            
+            let alertController = UIAlertController(title: "Resan är slut", message: "Vill du avsluta musik?", preferredStyle: .alert)
+            let mainAction = UIAlertAction(title: "Avbryta", style: .cancel) { (UIAlertAction) in
+                self.avPlayer.play()
+            }
+            let defaultAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+                self.navigationController!.popViewController(animated: true)
+            }
+
+            alertController.addAction(mainAction)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+
         }
+            
         
     }
     
    
     @IBAction func sliderAction(_ sender: AnyObject) {
-        if avPlayer != nil {
+       // if avPlayer != nil {
             avPlayer.volume = musikSlider.value
-        }
+        //}
     }
     
     
@@ -164,16 +188,16 @@ class AVPLayerVC: UIViewController {
        
     }
     
-    func playMusik(url:URL) {
-        print("playing \(url)")
-
-//let url = NSURL(string: urlstring)
-            avPlayerItem = AVPlayerItem.init(url: url)
-            avPlayer = AVPlayer.init(playerItem: avPlayerItem)
-            avPlayer.volume = 1.0
-            avPlayer.play()
-    }
-    
+//    func playMusik(url:URL) {
+//        print("playing \(url)")
+//
+////let url = NSURL(string: urlstring)
+//            avPlayerItem = AVPlayerItem.init(url: url)
+//            avPlayer = AVPlayer.init(playerItem: avPlayerItem)
+//            avPlayer.volume = 1.0
+//            avPlayer.play()
+//    }
+//
 
     
 func getAPI (id: Int) {
@@ -202,13 +226,15 @@ func getAPI (id: Int) {
                 print("!!!!!!!!!!!!! \(name)")
                 print("!!!!!!!!!!!!! \(image)")
                 
-                
+                    // shows channel //
                 let save = PlayerModel(json: channel)
                 self.player.append(save)
                 
+                    // shows channels image //
                 let url = URL(string: image)
                 self.musikImage.kf.setImage(with: url)
                 
+                    // shows channels name //
                 DispatchQueue.main.async {
                 self.musikNameLbl.text = name
                 }
