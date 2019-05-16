@@ -18,73 +18,124 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sl-logo" translatesAutoresizingMaskIntoConstraints="NO" id="C7r-ww-Fb8">
-                                <rect key="frame" x="67" y="134" width="241" height="278"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="singleNote" translatesAutoresizingMaskIntoConstraints="NO" id="znR-IW-MOj">
-                                <rect key="frame" x="248" y="271" width="60" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Från hållplats/ adress" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wCB-yU-QHH">
-                                <rect key="frame" x="67" y="420" width="241" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Till hållplats/adress" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yiz-pL-p7s">
-                                <rect key="frame" x="67" y="458" width="241" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <datePicker contentMode="scaleToFill" verticalCompressionResistancePriority="749" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJm-FJ-Ts4">
-                                <rect key="frame" x="67" y="496" width="241" height="65"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <date key="date" timeIntervalSinceReferenceDate="578237009.74160194">
-                                    <!--2019-04-29 13:23:29 +0000-->
-                                </date>
-                                <locale key="locale" localeIdentifier="sv_SE"/>
-                            </datePicker>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="musicnote2" translatesAutoresizingMaskIntoConstraints="NO" id="hAe-ni-mKb">
-                                <rect key="frame" x="293" y="188" width="82" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIk-nU-Mlx">
-                                <rect key="frame" x="67" y="588" width="241" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.61176470588235299" blue="0.83137254901960778" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Sök resa "/>
-                                <connections>
-                                    <action selector="searchTrip:" destination="4Dl-Kh-1x5" eventType="touchUpInside" id="eN5-tg-myg"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9Q-78-QBx">
-                                <rect key="frame" x="128" y="367" width="119" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
-                                <color key="textColor" red="0.0" green="0.65020495653152466" blue="0.91642218828201294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soundcloud" translatesAutoresizingMaskIntoConstraints="NO" id="CTz-yL-qPD">
-                                <rect key="frame" x="236" y="392" width="13" height="16"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="19C-0t-i1e">
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sl-logo" translatesAutoresizingMaskIntoConstraints="NO" id="C7r-ww-Fb8">
+                                        <rect key="frame" x="67" y="55" width="241" height="278"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nusic note" translatesAutoresizingMaskIntoConstraints="NO" id="xrV-ze-iMC">
+                                        <rect key="frame" x="220" y="55" width="88" height="62"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="88" id="H8c-es-rhQ"/>
+                                            <constraint firstAttribute="height" constant="62" id="wtB-qE-vi2"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="musicnote2" translatesAutoresizingMaskIntoConstraints="NO" id="hAe-ni-mKb">
+                                        <rect key="frame" x="285" y="84" width="82" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="82" id="M7m-de-cOJ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9Q-78-QBx">
+                                        <rect key="frame" x="128" y="288" width="119" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="119" id="deN-ps-R6i"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
+                                        <color key="textColor" red="0.0" green="0.65020495653152466" blue="0.91642218828201294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Från hållplats/ adress" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wCB-yU-QHH">
+                                        <rect key="frame" x="67" y="341" width="241" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Till hållplats/adress" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yiz-pL-p7s">
+                                        <rect key="frame" x="67" y="379" width="241" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIk-nU-Mlx">
+                                        <rect key="frame" x="67" y="509" width="241" height="49"/>
+                                        <color key="backgroundColor" red="0.0" green="0.61176470588235299" blue="0.83137254901960778" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="jEk-a4-UHl"/>
+                                        </constraints>
+                                        <state key="normal" title="Sök resa "/>
+                                        <connections>
+                                            <action selector="searchTrip:" destination="4Dl-Kh-1x5" eventType="touchUpInside" id="eN5-tg-myg"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soundcloud" translatesAutoresizingMaskIntoConstraints="NO" id="CTz-yL-qPD">
+                                        <rect key="frame" x="236" y="313" width="13" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="1Zn-hw-vmo"/>
+                                            <constraint firstAttribute="width" constant="13" id="nk9-bf-4SU"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="singleNote" translatesAutoresizingMaskIntoConstraints="NO" id="znR-IW-MOj">
+                                        <rect key="frame" x="248" y="192" width="60" height="62"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="sOQ-sL-oKP"/>
+                                        </constraints>
+                                    </imageView>
+                                    <datePicker contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJm-FJ-Ts4">
+                                        <rect key="frame" x="77" y="417" width="221" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="65" id="pXL-YF-BVm"/>
+                                        </constraints>
+                                        <date key="date" timeIntervalSinceReferenceDate="578237009.74160194">
+                                            <!--2019-04-29 13:23:29 +0000-->
+                                        </date>
+                                        <locale key="locale" localeIdentifier="sv_SE"/>
+                                    </datePicker>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="1Zn-hw-vmo"/>
+                                    <constraint firstAttribute="trailing" secondItem="lJm-FJ-Ts4" secondAttribute="trailing" constant="77" id="1bo-hq-6IX"/>
+                                    <constraint firstItem="xrV-ze-iMC" firstAttribute="trailing" secondItem="znR-IW-MOj" secondAttribute="trailing" id="4TJ-eC-m85"/>
+                                    <constraint firstItem="C7r-ww-Fb8" firstAttribute="top" secondItem="xrV-ze-iMC" secondAttribute="top" id="4q8-31-A0Q"/>
+                                    <constraint firstItem="iIk-nU-Mlx" firstAttribute="top" secondItem="lJm-FJ-Ts4" secondAttribute="bottom" constant="27" id="5Eb-iS-Ula"/>
+                                    <constraint firstItem="yiz-pL-p7s" firstAttribute="trailing" secondItem="iIk-nU-Mlx" secondAttribute="trailing" id="BDi-Jj-7R2"/>
+                                    <constraint firstItem="CTz-yL-qPD" firstAttribute="top" secondItem="19C-0t-i1e" secondAttribute="top" constant="313" id="DJw-AX-tPJ"/>
+                                    <constraint firstItem="w9Q-78-QBx" firstAttribute="leading" secondItem="19C-0t-i1e" secondAttribute="leading" constant="128" id="DwA-G1-kYd"/>
+                                    <constraint firstItem="wCB-yU-QHH" firstAttribute="top" secondItem="C7r-ww-Fb8" secondAttribute="bottom" constant="8" symbolic="YES" id="Dwj-Xf-RhF"/>
+                                    <constraint firstItem="wCB-yU-QHH" firstAttribute="trailing" secondItem="yiz-pL-p7s" secondAttribute="trailing" id="E1Z-bJ-SyO"/>
+                                    <constraint firstItem="CTz-yL-qPD" firstAttribute="leading" secondItem="19C-0t-i1e" secondAttribute="leading" constant="236" id="FHk-dN-rdK"/>
+                                    <constraint firstItem="wCB-yU-QHH" firstAttribute="top" secondItem="w9Q-78-QBx" secondAttribute="bottom" constant="15" id="Imd-oH-g9V"/>
+                                    <constraint firstItem="C7r-ww-Fb8" firstAttribute="trailing" secondItem="xrV-ze-iMC" secondAttribute="trailing" id="JPP-68-S82"/>
+                                    <constraint firstAttribute="bottom" secondItem="iIk-nU-Mlx" secondAttribute="bottom" constant="166" id="Kad-AH-xcx"/>
+                                    <constraint firstItem="lJm-FJ-Ts4" firstAttribute="leading" secondItem="iIk-nU-Mlx" secondAttribute="leading" constant="10" id="MES-8t-YB3"/>
+                                    <constraint firstItem="znR-IW-MOj" firstAttribute="top" secondItem="xrV-ze-iMC" secondAttribute="bottom" constant="75" id="NR0-VD-7A9"/>
+                                    <constraint firstItem="C7r-ww-Fb8" firstAttribute="leading" secondItem="19C-0t-i1e" secondAttribute="leading" constant="67" id="TYD-Cu-fDi"/>
+                                    <constraint firstItem="C7r-ww-Fb8" firstAttribute="leading" secondItem="wCB-yU-QHH" secondAttribute="leading" id="UzR-gV-hYg"/>
+                                    <constraint firstAttribute="trailing" secondItem="hAe-ni-mKb" secondAttribute="trailing" constant="8" id="WNU-pN-4Ou"/>
+                                    <constraint firstItem="wCB-yU-QHH" firstAttribute="top" secondItem="znR-IW-MOj" secondAttribute="bottom" constant="87" id="XbX-Lh-806"/>
+                                    <constraint firstItem="w9Q-78-QBx" firstAttribute="centerX" secondItem="wCB-yU-QHH" secondAttribute="centerX" id="ZKx-hS-fak"/>
+                                    <constraint firstAttribute="trailing" secondItem="xrV-ze-iMC" secondAttribute="trailing" constant="67" id="Zfy-Fl-RTA"/>
+                                    <constraint firstItem="yiz-pL-p7s" firstAttribute="top" secondItem="wCB-yU-QHH" secondAttribute="bottom" constant="8" symbolic="YES" id="aQF-BR-o5n"/>
+                                    <constraint firstItem="lJm-FJ-Ts4" firstAttribute="top" secondItem="yiz-pL-p7s" secondAttribute="bottom" constant="8" symbolic="YES" id="caC-wq-vlK"/>
+                                    <constraint firstItem="wCB-yU-QHH" firstAttribute="top" secondItem="CTz-yL-qPD" secondAttribute="bottom" constant="12" id="dFa-dm-2n0"/>
+                                    <constraint firstItem="hAe-ni-mKb" firstAttribute="top" secondItem="19C-0t-i1e" secondAttribute="top" constant="84" id="doD-pg-sjx"/>
+                                    <constraint firstItem="znR-IW-MOj" firstAttribute="trailing" secondItem="wCB-yU-QHH" secondAttribute="trailing" id="hHP-0H-ggK"/>
+                                    <constraint firstItem="znR-IW-MOj" firstAttribute="top" secondItem="hAe-ni-mKb" secondAttribute="bottom" constant="33" id="knG-xj-Ctr"/>
+                                    <constraint firstItem="wCB-yU-QHH" firstAttribute="leading" secondItem="yiz-pL-p7s" secondAttribute="leading" id="oz8-Tn-dKw"/>
+                                    <constraint firstItem="yiz-pL-p7s" firstAttribute="leading" secondItem="lJm-FJ-Ts4" secondAttribute="leading" constant="-10" id="rBs-Oe-tvU"/>
                                 </constraints>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nusic note" translatesAutoresizingMaskIntoConstraints="NO" id="xrV-ze-iMC">
-                                <rect key="frame" x="220" y="134" width="88" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <connections>
+                                    <outlet property="delegate" destination="4Dl-Kh-1x5" id="Jd5-8x-byG"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="CTz-yL-qPD" firstAttribute="top" secondItem="yFI-9o-vab" secondAttribute="top" constant="392" id="5UN-V8-zBT"/>
-                            <constraint firstItem="WuW-y4-Z5d" firstAttribute="trailing" secondItem="CTz-yL-qPD" secondAttribute="trailing" constant="126" id="TAq-47-1MZ"/>
-                            <constraint firstItem="CTz-yL-qPD" firstAttribute="leading" secondItem="WuW-y4-Z5d" secondAttribute="leading" constant="236" id="UXF-WP-yHc"/>
+                            <constraint firstAttribute="trailing" secondItem="19C-0t-i1e" secondAttribute="trailing" id="Gy0-Ad-bUc"/>
+                            <constraint firstAttribute="bottom" secondItem="19C-0t-i1e" secondAttribute="bottom" id="JXh-7i-ppu"/>
+                            <constraint firstItem="19C-0t-i1e" firstAttribute="top" secondItem="WuW-y4-Z5d" secondAttribute="top" id="Zw6-Aw-Ru2"/>
+                            <constraint firstItem="19C-0t-i1e" firstAttribute="leading" secondItem="WuW-y4-Z5d" secondAttribute="leading" id="o84-af-PiH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WuW-y4-Z5d"/>
                     </view>
@@ -93,6 +144,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="fromStation" destination="wCB-yU-QHH" id="wbq-MU-Zuw"/>
+                        <outlet property="scrollView" destination="19C-0t-i1e" id="yGB-NS-uad"/>
                         <outlet property="search" destination="iIk-nU-Mlx" id="Mo0-Z6-Wb6"/>
                         <outlet property="timePicker" destination="lJm-FJ-Ts4" id="fS1-hp-bP1"/>
                         <outlet property="toStation" destination="yiz-pL-p7s" id="Xf3-iA-37J"/>
@@ -101,7 +153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xeS-A3-ZfG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2295" y="137"/>
+            <point key="canvasLocation" x="2293.5999999999999" y="136.69950738916256"/>
         </scene>
         <!--Trip View Controller-->
         <scene sceneID="Bkb-2H-00F">
