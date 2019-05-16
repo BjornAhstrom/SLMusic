@@ -10,12 +10,13 @@
 
 import UIKit
 
-class StartViewController: UIViewController {
+class StartViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var fromStation: UITextField!
     @IBOutlet weak var toStation: UITextField!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var search: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var toStationName = ""
     var fromStationName = ""
@@ -36,8 +37,37 @@ class StartViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat =  "HH:mm"
         
+        fromStation.delegate = self
+        toStation.delegate = self
+        
+        hideKeyboardWhenTappedAround()
+        
         super.viewDidLoad()
         
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        fromStation.resignFirstResponder()
+        toStation.resignFirstResponder()
+        
+        return true;
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if (textField == fromStation) {
+            scrollView.setContentOffset(CGPoint.init(x: 0, y: 150), animated: true)
+        } else if (textField == toStation) {
+            scrollView.setContentOffset(CGPoint.init(x: 0, y: 220), animated: true)
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if (textField == fromStation) {
+            scrollView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
+        } else if (textField == toStation) {
+            scrollView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -149,5 +179,18 @@ class StartViewController: UIViewController {
                 }
             }
             }.resume()
+    }
+}
+
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

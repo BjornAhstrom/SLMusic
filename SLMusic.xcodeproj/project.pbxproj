@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				0F086DF2227AEDB70030A128 /* Trip Chosen View Controller Luan */,
-				1E195C49227857F7000FEA40 /* Trip View Controller Björn */,
+				1E195C49227857F7000FEA40 /* Trip View Controller Björn */,
 				413BCA3F22772B260095B2F7 /* StartViewController.swift */,
 				03EE9E44228AE83B003F92FE /* AVPlayer */,
 				1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */,
@@ -113,7 +113,7 @@
 			path = SLMusic;
 			sourceTree = "<group>";
 		};
-		1E195C49227857F7000FEA40 /* Trip View Controller Björn */ = {
+		1E195C49227857F7000FEA40 /* Trip View Controller Björn */ = {
 			isa = PBXGroup;
 			children = (
 				1EAD34F8227DF5840021FAD5 /* Model */,
@@ -431,8 +431,9 @@
 			baseConfigurationReference = F7D637692D33AC81D82E00B3 /* Pods-SLMusic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9U3LZ77WXY;
 				INFOPLIST_FILE = SLMusic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -451,8 +452,9 @@
 			baseConfigurationReference = ECAF465D2F2F442C93F86DBC /* Pods-SLMusic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9U3LZ77WXY;
 				INFOPLIST_FILE = SLMusic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
