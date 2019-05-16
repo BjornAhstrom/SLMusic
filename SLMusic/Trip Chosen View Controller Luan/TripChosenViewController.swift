@@ -35,6 +35,7 @@ class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPicker
         super.viewDidLoad()
         getAPI()
         
+        
         guard let arrNam = arrivalStationForChosenTrip else { return }
         guard let arrTime = arrivalTimeForChosenTrip else { return }
         guard let depName = departureStationForChosenTrip else { return }
@@ -62,15 +63,16 @@ class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return radioChannels.count
+            return radioChannels.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return radioChannels[row].name
+
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print("???????????????\(row)")
-        guard let id = radioChannels[row].id else {return}
-        idToIvan = id
+            guard let id = radioChannels[row].id else {return}
+            idToIvan = id
     }
     
     func getAPI() {
@@ -80,32 +82,36 @@ class TripChosenViewController: UIViewController, UIPickerViewDelegate, UIPicker
         let session = URLSession.shared
         session.dataTask(with: radioURL) { (data, response, error) in
             print("Request activated")
-        if let response = response {
-            print("Print \(response)")
-        }
-        if let data = data {
-            do {
-                guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {return}
-                
-                print(json)
-                print("Successful API request")
-                guard let channels = json["channels"] as? [[String: Any]] else {return}
-                for items in channels {
-                    let channelss = Channels(json: items)
-                    self.radioChannels.append(channelss)
-                    print("Channels added \(channelss)" )
+            if let response = response {
+                print("Print \(response)")
+            }
+            if let data = data {
+                do {
+                    guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {return}
+                    
+                    print(json)
+                    print("Successful API request")
+                    guard let channels = json["channels"] as? [[String: Any]] else {return}
+                    for items in channels {
+                        let channelss = Channels(json: items)
+                        self.radioChannels.append(channelss)
+                        print("Channels added \(channelss)" )
+                        
+                        DispatchQueue.main.async {
+                            self.musicGenrePickerWheel.reloadAllComponents()
+                            self.stopActivityIndicator(activityIndicator: self.activityIndicator)
+                        }
+                        
+                    }
+                    
                 }
-               
+                catch {
+                    print(error.localizedDescription)
+                }
                 
             }
-            catch {
-                print(error.localizedDescription)
-            }
-        }
-        
-        
-        }.resume()
-        self.stopActivityIndicator(activityIndicator: activityIndicator)
+            
+            }.resume()
     }
     
     

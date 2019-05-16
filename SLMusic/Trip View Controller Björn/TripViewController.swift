@@ -17,7 +17,6 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private let goToSelectedTripId = "goToSelectedTrip"
     private var departure = [Departure]()
     
-    
     var fromSiteId: String?
     var toSiteId: String?
     var departureStationForChosenTripToPass: String?
@@ -85,7 +84,6 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     
                 } catch {
                     self.alertMessage(titel: "Something went wrong", message: "\(error.localizedDescription )")
-                    print(error)
                 }
                 if let error = error {
                     print(error.localizedDescription)
