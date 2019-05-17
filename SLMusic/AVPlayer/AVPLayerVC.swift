@@ -90,7 +90,7 @@ class AVPLayerVC: UIViewController {
         
         
         
-        print("!!!!!!!!!!!! 3")
+        
         let currentTime = Int(luanTime ?? "10")
         //print(String(describing: currentTime))
          print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
@@ -127,12 +127,12 @@ class AVPLayerVC: UIViewController {
         }
         
         //let decisecond = String(format: "%.1f", counter).components(separatedBy: ".").last!
-        print("\(hour):\(minute):\(second)")
+        print("\(hour):\(minuteString):\(secondString)")
         
         
         //var  time = Double(currentTime!) + counter
         
-        tripTimeLeft.text = "\(minute):\(second)"  // "\(timeLeft)"
+        tripTimeLeft.text = "\(minuteString):\(secondString)"  // "\(timeLeft)"
         
         
         
