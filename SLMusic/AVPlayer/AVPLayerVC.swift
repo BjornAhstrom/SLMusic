@@ -230,13 +230,13 @@ func getAPI (id: Int) {
                 let save = PlayerModel(json: channel)
                 self.player.append(save)
                 
-                    // shows channels image //
-                let url = URL(string: image)
-                self.musikImage.kf.setImage(with: url)
-                
-                    // shows channels name //
                 DispatchQueue.main.async {
-                self.musikNameLbl.text = name
+                    // shows channels image //
+                    let url = URL(string: image)
+                    self.musikImage.kf.setImage(with: url)
+                    
+                    // shows channels name //
+                    self.musikNameLbl.text = name
                 }
                 
             } catch {

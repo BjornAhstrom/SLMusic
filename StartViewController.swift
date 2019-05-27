@@ -39,10 +39,11 @@ class StartViewController: UIViewController, UITextFieldDelegate {
         
         fromStation.delegate = self
         toStation.delegate = self
-        
+        timePicker.isHidden = true
         hideKeyboardWhenTappedAround()
         
         super.viewDidLoad()
+        
         
     }
     

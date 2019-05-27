@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class TripViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tripTableView: UITableView!
@@ -35,14 +34,13 @@ class TripViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         self.stopActivityIndicator(activityIndicator: activityIndicator)
         
-        // Odenplan: 9117, Solna: 9305
-        fromDest = Int(fromSiteId ?? "9117")
-        toDest = Int(toSiteId ?? "9305")
+        //Slussen: 9192, Alvik: 9112
+        fromDest = Int(fromSiteId ?? "9112")
+        toDest = Int(toSiteId ?? "9192")
         
         tripTableView.dataSource = self
         tripTableView.delegate = self
         
-        //Slussen: 9192, Alvik: 9112
         getDepartureAndArrivalDataFromSL(from: toDest ?? 9192, to: fromDest ?? 9112)
     }
     
