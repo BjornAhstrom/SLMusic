@@ -25,6 +25,7 @@ class EndPoint {
     var mainMastExtId: String?
     
     
+    
     init(json: [String : Any]) {
         name = json["name"] as? String ?? ""
         type = json["type"] as? String ?? ""
@@ -40,5 +41,6 @@ class EndPoint {
         hasMainMast = json["hasMainMast"] as? Bool ?? false
         mainMastId = json["mainMastId"] as? String ?? ""
         mainMastExtId = json["mainMastExtId"] as? String ?? ""
+        
     }
 }

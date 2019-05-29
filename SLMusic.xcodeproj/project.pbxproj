@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F086DF4227AEDFF0030A128 /* TripChosenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */; };
 		034BB788227B5C3B0029A0A4 /* AVPLayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BB787227B5C3B0029A0A4 /* AVPLayerVC.swift */; };
+		03EE9E46228AE870003F92FE /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EE9E45228AE870003F92FE /* PlayerModel.swift */; };
+		0F086DF4227AEDFF0030A128 /* TripChosenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */; };
+		0F4E5ECA228ACBB500F5EBD7 /* Channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E5EC9228ACBB500F5EBD7 /* Channels.swift */; };
 		1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */; };
 		1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C2C2276F8E4000FEA40 /* ViewController.swift */; };
 		1E195C302276F8E4000FEA40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C2E2276F8E4000FEA40 /* Main.storyboard */; };
@@ -16,16 +18,18 @@
 		1E195C352276F8E5000FEA40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E195C332276F8E5000FEA40 /* LaunchScreen.storyboard */; };
 		1E195C4F22785A01000FEA40 /* TripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C4E22785A01000FEA40 /* TripViewController.swift */; };
 		1E195C5122785A23000FEA40 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E195C5022785A23000FEA40 /* TripCell.swift */; };
-		1EAD34FA227DF63B0021FAD5 /* CityTransportationStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAD34F9227DF63B0021FAD5 /* CityTransportationStop.swift */; };
-		1EAD34FC227DF99D0021FAD5 /* CityTransportationStops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAD34FB227DF99D0021FAD5 /* CityTransportationStops.swift */; };
+		1E6FE40D2289A5EC00345CD1 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FE40C2289A5EC00345CD1 /* Info.swift */; };
 		1ED6BDB8228025E100BF42C4 /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED6BDB7228025E100BF42C4 /* Departure.swift */; };
 		1ED6BDBC228167EB00BF42C4 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED6BDBB228167EB00BF42C4 /* EndPoint.swift */; };
 		413BCA4022772B260095B2F7 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413BCA3F22772B260095B2F7 /* StartViewController.swift */; };
+		70BEC11F95F5DCCC162A5F17 /* Pods_SLMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1357D80E75D2DF52BA91DCB /* Pods_SLMusic.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripChosenViewController.swift; sourceTree = "<group>"; };
 		034BB787227B5C3B0029A0A4 /* AVPLayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPLayerVC.swift; sourceTree = "<group>"; };
+		03EE9E45228AE870003F92FE /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
+		0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripChosenViewController.swift; sourceTree = "<group>"; };
+		0F4E5EC9228ACBB500F5EBD7 /* Channels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channels.swift; sourceTree = "<group>"; };
 		1E195C272276F8E4000FEA40 /* SLMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E195C2C2276F8E4000FEA40 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,11 +39,11 @@
 		1E195C362276F8E5000FEA40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E195C4E22785A01000FEA40 /* TripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewController.swift; sourceTree = "<group>"; };
 		1E195C5022785A23000FEA40 /* TripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCell.swift; sourceTree = "<group>"; };
-		1EAD34F9227DF63B0021FAD5 /* CityTransportationStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTransportationStop.swift; sourceTree = "<group>"; };
-		1EAD34FB227DF99D0021FAD5 /* CityTransportationStops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTransportationStops.swift; sourceTree = "<group>"; };
+		1E6FE40C2289A5EC00345CD1 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		1ED6BDB7228025E100BF42C4 /* Departure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Departure.swift; sourceTree = "<group>"; };
 		1ED6BDBB228167EB00BF42C4 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		413BCA3F22772B260095B2F7 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartViewController.swift; path = ../StartViewController.swift; sourceTree = "<group>"; };
+		E1357D80E75D2DF52BA91DCB /* Pods_SLMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECAF465D2F2F442C93F86DBC /* Pods-SLMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLMusic.release.xcconfig"; path = "Target Support Files/Pods-SLMusic/Pods-SLMusic.release.xcconfig"; sourceTree = "<group>"; };
 		F7D637692D33AC81D82E00B3 /* Pods-SLMusic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLMusic.debug.xcconfig"; path = "Target Support Files/Pods-SLMusic/Pods-SLMusic.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,16 +53,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70BEC11F95F5DCCC162A5F17 /* Pods_SLMusic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03EE9E44228AE83B003F92FE /* AVPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				034BB787227B5C3B0029A0A4 /* AVPLayerVC.swift */,
+				03EE9E45228AE870003F92FE /* PlayerModel.swift */,
+			);
+			path = AVPlayer;
+			sourceTree = "<group>";
+		};
 		0F086DF2227AEDB70030A128 /* Trip Chosen View Controller Luan */ = {
 			isa = PBXGroup;
 			children = (
 				0F086DF3227AEDFF0030A128 /* TripChosenViewController.swift */,
+				0F4E5EC9228ACBB500F5EBD7 /* Channels.swift */,
 			);
 			path = "Trip Chosen View Controller Luan";
 			sourceTree = "<group>";
@@ -69,6 +84,7 @@
 				1E195C292276F8E4000FEA40 /* SLMusic */,
 				1E195C282276F8E4000FEA40 /* Products */,
 				595854F3B369E9ED2BA70365 /* Pods */,
+				B86FB04E893BDBB0BD6A1F93 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,7 +102,7 @@
 				0F086DF2227AEDB70030A128 /* Trip Chosen View Controller Luan */,
 				1E195C49227857F7000FEA40 /* Trip View Controller Björn */,
 				413BCA3F22772B260095B2F7 /* StartViewController.swift */,
-				034BB787227B5C3B0029A0A4 /* AVPLayerVC.swift */,
+				03EE9E44228AE83B003F92FE /* AVPlayer */,
 				1E195C2A2276F8E4000FEA40 /* AppDelegate.swift */,
 				1E195C2C2276F8E4000FEA40 /* ViewController.swift */,
 				1E195C2E2276F8E4000FEA40 /* Main.storyboard */,
@@ -111,10 +127,9 @@
 		1EAD34F8227DF5840021FAD5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1EAD34F9227DF63B0021FAD5 /* CityTransportationStop.swift */,
-				1EAD34FB227DF99D0021FAD5 /* CityTransportationStops.swift */,
 				1ED6BDB7228025E100BF42C4 /* Departure.swift */,
 				1ED6BDBB228167EB00BF42C4 /* EndPoint.swift */,
+				1E6FE40C2289A5EC00345CD1 /* Info.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -126,6 +141,14 @@
 				ECAF465D2F2F442C93F86DBC /* Pods-SLMusic.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B86FB04E893BDBB0BD6A1F93 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E1357D80E75D2DF52BA91DCB /* Pods_SLMusic.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,12 +252,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SLMusic/Pods-SLMusic-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -250,10 +275,11 @@
 			files = (
 				034BB788227B5C3B0029A0A4 /* AVPLayerVC.swift in Sources */,
 				1E195C2D2276F8E4000FEA40 /* ViewController.swift in Sources */,
+				0F4E5ECA228ACBB500F5EBD7 /* Channels.swift in Sources */,
 				1E195C4F22785A01000FEA40 /* TripViewController.swift in Sources */,
+				1E6FE40D2289A5EC00345CD1 /* Info.swift in Sources */,
 				1ED6BDBC228167EB00BF42C4 /* EndPoint.swift in Sources */,
-				1EAD34FC227DF99D0021FAD5 /* CityTransportationStops.swift in Sources */,
-				1EAD34FA227DF63B0021FAD5 /* CityTransportationStop.swift in Sources */,
+				03EE9E46228AE870003F92FE /* PlayerModel.swift in Sources */,
 				1E195C2B2276F8E4000FEA40 /* AppDelegate.swift in Sources */,
 				0F086DF4227AEDFF0030A128 /* TripChosenViewController.swift in Sources */,
 				1ED6BDB8228025E100BF42C4 /* Departure.swift in Sources */,
@@ -405,8 +431,9 @@
 			baseConfigurationReference = F7D637692D33AC81D82E00B3 /* Pods-SLMusic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9U3LZ77WXY;
 				INFOPLIST_FILE = SLMusic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -425,8 +452,9 @@
 			baseConfigurationReference = ECAF465D2F2F442C93F86DBC /* Pods-SLMusic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9U3LZ77WXY;
 				INFOPLIST_FILE = SLMusic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
